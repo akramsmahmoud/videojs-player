@@ -1,0 +1,3318 @@
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap" rel="stylesheet">
+    <link href="./plugins/videojs/video-js.min.css" rel="stylesheet"/>
+    <link href="./plugins/video-flor/videojs-flor.css" rel="stylesheet"/>
+
+    <!-- Main styles -->
+    <style>
+
+        :root {
+            --main-text-color: #fff;
+            --natural-text-color: #cfcfcf;
+            --main-background-color: #242526;
+            --natural-background-color: #252d34;
+            --natural-background-color-light: #38444e;
+            --main-element-color: #fff;
+            --natural-element-color: #cfcfcf;
+            --close-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4PSIwcHgiIHk9IjBweCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjAuOTYzIDYwLjg0MjsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHZpZXdCb3g9IjAgMCA2MC45NiA2MC44NCI+CjxwYXRoIHN0eWxlPSJmaWxsOiMyMzFGMjA7IiBkPSJNNTkuNTk1LDUyLjg2MUwzNy4wOTQsMzAuMzU5TDU5LjQ3Myw3Ljk4YzEuODI1LTEuODI2LDEuODI1LTQuNzg2LDAtNi42MTEgIGMtMS44MjYtMS44MjUtNC43ODUtMS44MjUtNi42MTEsMEwzMC40ODMsMjMuNzQ4TDguMTA1LDEuMzY5Yy0xLjgyNi0xLjgyNS00Ljc4NS0xLjgyNS02LjYxMSwwYy0xLjgyNiwxLjgyNi0xLjgyNiw0Ljc4NiwwLDYuNjExICBsMjIuMzc4LDIyLjM3OUwxLjM2OSw1Mi44NjFjLTEuODI2LDEuODI2LTEuODI2LDQuNzg1LDAsNi42MTFjMC45MTMsMC45MTMsMi4xMDksMS4zNjksMy4zMDYsMS4zNjlzMi4zOTMtMC40NTYsMy4zMDYtMS4zNjkgIGwyMi41MDItMjIuNTAybDIyLjUwMSwyMi41MDJjMC45MTMsMC45MTMsMi4xMDksMS4zNjksMy4zMDYsMS4zNjlzMi4zOTMtMC40NTYsMy4zMDYtMS4zNjkgIEM2MS40Miw1Ny42NDcsNjEuNDIsNTQuNjg3LDU5LjU5NSw1Mi44NjF6Ii8+Cjwvc3ZnPg==');
+            --menu-icon: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MC43OCAyMy42NSI+PGRlZnM+PHN0eWxlPi5he2ZpbGw6IzFkMWQxZDtmaWxsLXJ1bGU6ZXZlbm9kZDt9PC9zdHlsZT48L2RlZnM+PHBhdGggY2xhc3M9ImEiIGQ9Ik0xNy4yOCwyMy42NUg0OC44MWEyLDIsMCwwLDAsMC0zLjk0SDE3LjI4YTIsMiwwLDAsMCwwLDMuOTRabTAtOS44Nkg0OC44MWEyLDIsMCwwLDAsMC0zLjk0SDE3LjI4YTIsMiwwLDAsMCwwLDMuOTRaTTE1LjMxLDJhMiwyLDAsMCwwLDIsMkg0OC44MWEyLDIsMCwwLDAsMC0zLjk0SDE3LjI4QTIsMiwwLDAsMCwxNS4zMSwyWiIvPjxwYXRoIGNsYXNzPSJhIiBkPSJNMTAuMzcsMi44MWExLjI1LDEuMjUsMCwwLDAtMS43NywwTC4yOSwxMS4xMmExLDEsMCwwLDAsMCwxLjQxTDguNiwyMC44NGExLjI1LDEuMjUsMCwwLDAsMS43Ny0xLjc3TDMuMTMsMTEuODJsNy4yNS03LjI1QTEuMjUsMS4yNSwwLDAsMCwxMC4zNywyLjgxWiIvPjwvc3ZnPg==');
+            --play-icon: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTFweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTEgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5wbGF5X2Fycm93PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9Ikljb25zIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iUm91bmRlZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTc1My4wMDAwMDAsIC05NTUuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJBViIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLjAwMDAwMCwgODUyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ii1Sb3VuZC0vLUFWLS8tcGxheV9hcnJvdyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNjQ2LjAwMDAwMCwgOTguMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUtQ29weS01MCIgeD0iMCIgeT0iMCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48L3JlY3Q+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik03LDYuODIgTDcsMTcuMTggQzcsMTcuOTcgNy44NywxOC40NSA4LjU0LDE4LjAyIEwxNi42OCwxMi44NCBDMTcuMywxMi40NSAxNy4zLDExLjU1IDE2LjY4LDExLjE1IEw4LjU0LDUuOTggQzcuODcsNS41NSA3LDYuMDMgNyw2LjgyIFoiIGlkPSLwn5S5SWNvbi1Db2xvciIgZmlsbD0iIzFEMUQxRCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+            --pause-icon: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTJweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTIgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5wYXVzZTwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJJY29ucyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IlJvdW5kZWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC02NTAuMDAwMDAwLCAtOTU1LjAwMDAwMCkiPgogICAgICAgICAgICA8ZyBpZD0iQVYiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDEwMC4wMDAwMDAsIDg1Mi4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnIGlkPSItUm91bmQtLy1BVi0vLXBhdXNlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1NDQuMDAwMDAwLCA5OC4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgaWQ9IlJlY3RhbmdsZS1Db3B5LTY3IiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTgsMTkgQzkuMSwxOSAxMCwxOC4xIDEwLDE3IEwxMCw3IEMxMCw1LjkgOS4xLDUgOCw1IEM2LjksNSA2LDUuOSA2LDcgTDYsMTcgQzYsMTguMSA2LjksMTkgOCwxOSBaIE0xNCw3IEwxNCwxNyBDMTQsMTguMSAxNC45LDE5IDE2LDE5IEMxNy4xLDE5IDE4LDE4LjEgMTgsMTcgTDE4LDcgQzE4LDUuOSAxNy4xLDUgMTYsNSBDMTQuOSw1IDE0LDUuOSAxNCw3IFoiIGlkPSLwn5S5SWNvbi1Db2xvciIgZmlsbD0iIzFEMUQxRCI+PC9wYXRoPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+');
+            --playlist-icon: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTVweCIgaGVpZ2h0PSIxNHB4IiB2aWV3Qm94PSIwIDAgMTUgMTQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDx0aXRsZT5wbGF5bGlzdF9wbGF5PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGcgaWQ9Ikljb25zIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgICAgICA8ZyBpZD0iUm91bmRlZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTEwNS4wMDAwMDAsIC05OTkuMDAwMDAwKSI+CiAgICAgICAgICAgIDxnIGlkPSJBViIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAwLjAwMDAwMCwgODUyLjAwMDAwMCkiPgogICAgICAgICAgICAgICAgPGcgaWQ9Ii1Sb3VuZC0vLUFWLS8tcGxheWxpc3RfcGxheSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsIDE0Mi4wMDAwMDApIj4KICAgICAgICAgICAgICAgICAgICA8Zz4KICAgICAgICAgICAgICAgICAgICAgICAgPHJlY3QgaWQ9IlJlY3RhbmdsZS1Db3B5LTYwIiB4PSIwIiB5PSIwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiPjwvcmVjdD4KICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTYsOSBMMTYsOSBDMTYuNTUsOSAxNyw5LjQ1IDE3LDEwIEMxNywxMC41NSAxNi41NSwxMSAxNiwxMSBMNiwxMSBDNS40NSwxMSA1LDEwLjU1IDUsMTAgQzUsOS40NSA1LjQ1LDkgNiw5IFogTTYsNSBMMTYsNSBDMTYuNTUsNSAxNyw1LjQ1IDE3LDYgQzE3LDYuNTUgMTYuNTUsNyAxNiw3IEw2LDcgQzUuNDUsNyA1LDYuNTUgNSw2IEM1LDUuNDUgNS40NSw1IDYsNSBaIE02LDEzIEwxMiwxMyBDMTIuNTUsMTMgMTMsMTMuNDUgMTMsMTQgQzEzLDE0LjU1IDEyLjU1LDE1IDEyLDE1IEw2LDE1IEM1LjQ1LDE1IDUsMTQuNTUgNSwxNCBDNSwxMy40NSA1LjQ1LDEzIDYsMTMgWiBNMTUsMTMuODggTDE1LDE4LjExIEMxNSwxOC41IDE1LjQyLDE4Ljc0IDE1Ljc2LDE4LjU0IEwxOS4yOSwxNi40MiBDMTkuNjEsMTYuMjMgMTkuNjEsMTUuNzYgMTkuMjksMTUuNTYgTDE1Ljc2LDEzLjQ0IEMxNS40MiwxMy4yNSAxNSwxMy40OSAxNSwxMy44OCBaIiBpZD0i8J+UuUljb24tQ29sb3IiIGZpbGw9IiMxRDFEMUQiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==');
+            --transition: all .2s ease-out;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+
+        body {
+            background-color: var(--main-background-color);
+            color: var(--main-text-color);
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+    </style>
+
+    <!-- Playlist -->
+    <style>
+        .playlist {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 20px 100px;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist {
+                padding: 20px;
+            }
+        }
+
+        .playlist--open-modal {
+            pointer-events: none;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist--open-modal {
+                height: 0;
+                overflow: hidden;
+            }
+        }
+
+
+        .playlist__wrapper {
+            width: 50%;
+            min-width: 735px;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__wrapper {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+
+        .playlist__header {
+            padding: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__header {
+                flex-direction: column;
+            }
+        }
+
+        .playlist__title {
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__title {
+                margin-bottom: 10px;
+            }
+        }
+
+        .playlist__title-text {
+            display: inline;
+        }
+
+        .playlist__title-number {
+            display: inline;
+        }
+
+
+        .playlist__dropdown {
+            width: 220px;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__dropdown {
+                width: 100%;
+            }
+        }
+
+        .playlist__items {
+        }
+
+        .playlist__item {
+            display: none;
+            border-bottom: 1px solid var(--main-element-color);
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__item {
+                border-bottom: none;
+            }
+        }
+
+        .playlist__item--active {
+            display: block;
+        }
+
+        .playlist__series {
+            display: grid;
+            grid-template-areas: 'number preview title duration' 'number preview description description';
+            grid-template-columns: 65px 250px 2fr 1fr;
+            align-items: center;
+            grid-template-rows: 30px 1fr;
+            grid-column-gap: 15px;
+            border-top: 1px solid var(--main-element-color);
+            padding: 8px 0;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__series {
+                grid-template-areas: 'number number' 'preview preview' 'title duration' 'description description';
+                grid-template-columns: 3fr 1fr;
+                grid-template-rows: auto;
+                grid-gap: 5px;
+                border-top: none;
+                margin-bottom: 35px;
+            }
+        }
+
+        .playlist__series-number {
+            grid-area: number;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 500;
+            width: 100%;
+            height: 100%;
+        }
+
+        @media (max-width: 1023px) {
+            .playlist__series-number {
+                margin-bottom: 4px;
+            }
+
+            .playlist__series-number:after {
+                content: '';
+                flex-grow: 1;
+                height: 1px;
+                background: var(--main-element-color);
+                margin-left: 10px;
+            }
+        }
+
+        .playlist__series-preview {
+            grid-area: preview;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .playlist__series-preview-item {
+            width: 100%;
+            padding-bottom: 60%;
+            position: relative;
+        }
+
+        .playlist__series-preview-item-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+        }
+
+        .playlist__series-preview-item-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 2;
+        }
+
+        .playlist__series-title {
+            grid-area: title;
+            font-size: 16px;
+        }
+
+        .playlist__series-duration {
+            grid-area: duration;
+            text-align: right;
+            font-size: 16px;
+        }
+
+        .playlist__series-description {
+            grid-area: description;
+            font-size: 14px;
+        }
+    </style>
+
+    <!-- Modal player -->
+    <style>
+        .modal-player {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: var(--main-background-color);
+            z-index: 110;
+            grid-template-columns: 1fr;
+            display: none;
+        }
+
+        .modal-player--open-playlist {
+            grid-template-columns: 1fr 430px;
+        }
+
+        @media (max-width: 1023px) {
+            .modal-player {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .modal-player--active {
+            display: grid;
+        }
+
+        .modal-player__close {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--main-element-color);
+            cursor: pointer;
+            mask: var(--close-icon);
+            -webkit-mask: var(--close-icon);
+            margin-left: 20px;
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            z-index: 100;
+        }
+
+        .modal-player__back {
+            position: fixed;
+            left: 20px;
+            top: 20px;
+            width: 24px;
+            height: 24px;
+            background: var(--main-element-color);
+            cursor: pointer;
+            mask: var(--playlist-icon);
+            -webkit-mask: var(--playlist-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            z-index: 100;
+            display: none;
+        }
+
+        @media (max-width: 1023px) {
+            .modal-player__back {
+                display: block;
+            }
+        }
+
+        .modal-player__items {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-player__item {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+
+        .modal-player__item--active {
+            display: block;
+        }
+
+        .modal-player__item-video {
+            width: 100%;
+            height: 100%;
+        }
+
+        .modal-player__playlist {
+            display: none;
+            flex-direction: column;
+            height: 100vh;
+            padding-top: 60px;
+        }
+
+        .modal-player--open-playlist .modal-player__playlist {
+            display: flex;
+        }
+
+        @media (max-width: 1023px) {
+            .modal-player__playlist {
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 100%;
+                transform: translateX(100%);
+                transition: var(--transition);
+                background: var(--main-background-color);
+            }
+
+            .modal-player--open-playlist .modal-player__playlist {
+                transform: translateX(0);
+            }
+        }
+
+        .modal-player__playlist-content {
+            width: 100%;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .modal-player__playlist-footer {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .modal-player__playlist-item {
+            display: none;
+        }
+
+        .modal-player__playlist-item--active {
+            display: block;
+        }
+
+        .modal-player__series {
+            display: grid;
+            grid-template-areas: 'preview title duration' 'preview description description';
+            grid-template-columns: 190px 2fr 1fr;
+            grid-template-rows: 23px 1fr;
+            grid-column-gap: 8px;
+            border-top: 1px solid var(--main-element-color);
+            padding: 8px 0;
+            padding-left: 20px;
+            font-size: 12px;
+            line-height: 14px;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .modal-player__series:after {
+            content: attr(data-series-number);
+            position: absolute;
+            color: var(--main-text-color);
+            font-size: 12px;
+            z-index: 100;
+            left: 10px;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-player__series--playing:after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--main-element-color);
+            mask: var(--play-icon);
+            -webkit-mask: var(--play-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        .modal-player__series--playing {
+            background:#111;
+        }
+
+        @media (max-width: 1023px) {
+            .modal-player__series:nth-of-type(1) {
+                border-top: none;
+            }
+        }
+
+        .modal-player__series:nth-last-of-type(1) {
+            border-bottom: 1px solid var(--main-element-color);
+        }
+
+        .modal-player__series-preview {
+            grid-area: preview;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .modal-player__series-preview-item {
+            width: 100%;
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+
+        .modal-player__series-preview-item-video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 1;
+        }
+
+        .modal-player__series-item-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 2;
+        }
+
+        .modal-player__series-title {
+            grid-area: title;
+        }
+
+        .modal-player__series-duration {
+            grid-area: duration;
+            text-align: right;
+        }
+
+        .modal-player__series-description {
+            grid-area: description;
+        }
+
+        .modal-player__playlist-footer-next {
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1023px) {
+            .modal-player__playlist-footer-next {
+                margin-bottom: 10px;
+            }
+        }
+
+        .modal-player__playlist-footer-next-button {
+            height: 44px;
+            border-radius: 10px;
+            border: 1px solid var(--main-element-color);
+            color: var(--main-text-color);
+            background: var(--natural-background-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+
+        .modal-player__playlist-footer-next-button:hover {
+            border-color: var(--natural-element-color);
+            color: var(--natural-text-color);
+        }
+
+        .modal-player__playlist-footer-next-button--disabled,
+        .modal-player__playlist-footer-next-button--disabled:hover {
+            border-color: var(--natural-element-color);
+            color: var(--natural-text-color);
+            cursor: default;
+            opacity: .4;
+        }
+
+        .modal-player__playlist-footer-next-text {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .modal-player__playlist-footer-select {
+        }
+
+
+a{
+color:transparent;
+
+}
+
+a:visited{
+
+color:#0000ff;
+
+
+}
+    </style>
+
+    <!-- Custom select -->
+    <style>
+
+        .custom-select {
+            width: 100%;
+            height: 46px;
+            position: relative;
+            background: var(--natural-background-color);
+            z-index: 100;
+            border-radius: 10px;
+            border: 1px solid;
+            border-color: var(--main-element-color);
+        }
+
+        .custom-select,
+        .custom-select *,
+        .custom-select *:before,
+        .custom-select *:after {
+            transition: var(--transition);
+        }
+
+        .custom-select:hover {
+            border-color: var(--natural-element-color);
+        }
+
+        .custom-select:focus {
+            border-color: var(--natural-element-color);
+            outline: none;
+        }
+
+        .custom-select select {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 102;
+            opacity: 0;
+            display: none;
+            font-size: 16px;
+        }
+
+        @media (max-width: 1023px) {
+            .custom-select select {
+                display: block;
+            }
+        }
+
+        .custom-select--open {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            z-index: 101;
+        }
+
+        .custom-select--invert.custom-select--open {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .custom-select__input {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .custom-select__input-name {
+            display: flex;
+            font-size: 16px;
+            padding: 0 12px;
+            height: 100%;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border-radius: 10px;
+            color: var(--main-text-color);
+            width: 100%;
+            line-height: 44px;
+            overflow: hidden;
+        }
+
+        .custom-select:hover .custom-select__input-name {
+            color: var(--natural-text-color);
+        }
+
+        .custom-select--selected .custom-select__input-name {
+            background: var(--natural-background-color);
+            color: var(--main-text-color);
+        }
+
+        .custom-select__input-icon {
+            position: absolute;
+            width: 18px;
+            height: 11px;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .custom-select--open .custom-select__input-icon {
+            transform: translateY(-50%) rotate(180deg);
+        }
+
+        .custom-select__input-icon:before, .custom-select__input-icon:after {
+            display: block;
+            content: '';
+            position: absolute;
+            width: 72%;
+            height: 2px;
+            background: var(--main-text-color);
+            bottom: 0;
+        }
+
+        .custom-select:hover .custom-select__input-icon:before, .custom-select:hover .custom-select__input-icon:after {
+            background: var(--natural-text-color);
+        }
+
+        .custom-select__input-icon:before {
+            left: 50%;
+            transform: rotate(-45deg);
+            transform-origin: left bottom;
+        }
+
+        .custom-select__input-icon:after {
+            right: 50%;
+            transform: rotate(45deg);
+            transform-origin: right bottom;
+        }
+
+        .custom-select__list {
+            position: absolute;
+            left: -1px;
+            top: 100%;
+            width: calc(100% + 2px);
+            border: 1px solid;
+            background: inherit;
+            border-color: inherit;
+            border-top-color: transparent;
+            transform: scaleY(0);
+            visibility: hidden;
+            opacity: 0;
+            transform-origin: top;
+            max-height: 200px;
+            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .custom-select--invert .custom-select__list {
+            transform-origin: bottom;
+            top: auto;
+            bottom: 100%;
+            border-bottom-color: transparent;
+            border-top-color: var(--main-element-color);
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+        }
+
+        .custom-select--open .custom-select__list {
+            transform: scaleX(1);
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .custom-select__item {
+            padding: 10px 12px;
+            cursor: pointer;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .custom-select__item:focus, .custom-select__item:hover {
+            background: var(--main-background-color);
+            outline: none;
+        }
+
+        .custom-select__item--selected {
+            background: var(--main-background-color);
+        }
+
+    </style>
+
+    <!-- Custom scroll -->
+    <style>
+
+        .custom-scroll {
+            padding-right: 4px;
+        }
+
+        .custom-scroll::-webkit-scrollbar-button {
+            background-image: none;
+            background-repeat: no-repeat;
+            width: 10px;
+            height: 0;
+        }
+
+        .custom-scroll::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--main-element-color);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background-color: var(--natural-element-color);
+            cursor: pointer;
+        }
+
+        .custom-scroll::-webkit-resizer {
+            background-image: none;
+            background-repeat: no-repeat;
+            width: 10px;
+            height: 0;
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 10px;
+        }
+
+    </style>
+
+    <!-- Video controls buttons -->
+    <style>
+        .loop-button {
+
+        }
+
+        .loop-button .vjs-icon-placeholder {
+            width: 34px;
+            height: 14px;
+            border-radius: 7px;
+            background: #7f7f7f;
+            position: relative;
+        }
+
+
+        .loop-button .vjs-icon-placeholder:after {
+            display: block;
+            content: '';
+            position: absolute;
+            left: 1px;
+            top: 1px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #fff;
+            transition: var(--transition);
+            mask: var(--pause-icon);
+            -webkit-mask: var(--pause-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        .loop-button .vjs-icon-placeholder:before {
+            display: block;
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #717171;
+            transition: var(--transition);
+
+        }
+
+        .loop-button--active .vjs-icon-placeholder:before {
+            left: calc(100% - 17px);
+            background: #fff;
+        }
+
+        .loop-button--active .vjs-icon-placeholder:after {
+            background: var(--main-background-color);
+            left: calc(100% - 12px);
+            mask: var(--play-icon);
+            -webkit-mask: var(--play-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        .toggle-playlist .vjs-icon-placeholder {
+            width: 20px;
+            height: 20px;
+            background: var(--main-element-color);
+            cursor: pointer;
+            mask: var(--playlist-icon);
+            -webkit-mask: var(--playlist-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            z-index: 100;
+        }
+
+        .toggle-playlist--active .vjs-icon-placeholder {
+            background: var(--natural-element-color);
+        }
+
+        .modal-player__item-video:fullscreen .toggle-playlist {
+            display: none;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="playlist">
+    <div class="playlist__wrapper">
+
+        <div class="playlist__header">
+            <div class="playlist__title">
+                <div class="playlist__title-text">Watch Season</div>
+                <div class="playlist__title-number">1</div>
+            </div>
+            <div class="playlist__dropdown">
+                <select class="select" data-season-select><option value="0">Season 1</option><option value="1">Season 2</option><option value="2">Season 3</option><option value="3">Season 4</option></select>            </div>
+        </div>
+
+        <div class="playlist__items">
+            <div class="playlist__item playlist__item--active"
+                 data-season-index="0">
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">1</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="0">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" id="gossVideo" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                            <canvas class="cnvax" id="canvasId"></canvas>
+
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 1</div>
+                    <div class="playlist__series-duration">1:00 min</div>
+                    <div class="playlist__series-description"></div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">2</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="1">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 2</div>
+                    <div class="playlist__series-duration">2:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">3</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="2">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 3</div>
+                    <div class="playlist__series-duration">3:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">4</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="3">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 4</div>
+                    <div class="playlist__series-duration">4:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">5</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="4">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 5</div>
+                    <div class="playlist__series-duration">5:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">6</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="5">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 6</div>
+                    <div class="playlist__series-duration">6:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">7</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="6">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 7</div>
+                    <div class="playlist__series-duration">7:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">8</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="7">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 8</div>
+                    <div class="playlist__series-duration">8:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">9</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="8">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 9</div>
+                    <div class="playlist__series-duration">9:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">10</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="9">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 10</div>
+                    <div class="playlist__series-duration">10:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">11</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="10">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 11</div>
+                    <div class="playlist__series-duration">11:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">12</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="11">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 12</div>
+                    <div class="playlist__series-duration">12:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">13</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="12">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 13</div>
+                    <div class="playlist__series-duration">13:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">14</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="13">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 14</div>
+                    <div class="playlist__series-duration">14:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">15</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="14">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 15</div>
+                    <div class="playlist__series-duration">15:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">16</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="15">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 16</div>
+                    <div class="playlist__series-duration">16:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">17</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="16">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 17</div>
+                    <div class="playlist__series-duration">17:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">18</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="17">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 18</div>
+                    <div class="playlist__series-duration">18:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">19</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="18">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 19</div>
+                    <div class="playlist__series-duration">19:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">20</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="19">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 20</div>
+                    <div class="playlist__series-duration">20:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">21</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="20">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 21</div>
+                    <div class="playlist__series-duration">21:00 min</div>
+                    <div class="playlist__series-description"></div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">22</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="0"
+                         data-series-index="21">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 1 Series 22</div>
+                    <div class="playlist__series-duration">22:00 min</div>
+                    <div class="playlist__series-description"></div>
+                </div>
+
+
+            </div>
+            <div class="playlist__item "
+                 data-season-index="1">
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">1</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="1"
+                         data-series-index="0">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 2 Series 1</div>
+                    <div class="playlist__series-duration">1:00 min</div>
+                    <div class="playlist__series-description"></div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">2</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="1"
+                         data-series-index="1">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 2 Series 2</div>
+                    <div class="playlist__series-duration">2:00 min</div>
+                    <div class="playlist__series-description"></div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">3</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="1"
+                         data-series-index="2">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 2 Series 3</div>
+                    <div class="playlist__series-duration">3:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">4</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="1"
+                         data-series-index="3">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 2 Series 4</div>
+                    <div class="playlist__series-duration">4:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+            <div class="playlist__item "
+                 data-season-index="2">
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">1</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="2"
+                         data-series-index="0">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 3 Series 1</div>
+                    <div class="playlist__series-duration">1:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">2</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="2"
+                         data-series-index="1">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 3 Series 2</div>
+                    <div class="playlist__series-duration">2:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">3</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="2"
+                         data-series-index="2">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 3 Series 3</div>
+                    <div class="playlist__series-duration">3:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">4</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="2"
+                         data-series-index="3">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 3 Series 4</div>
+                    <div class="playlist__series-duration">4:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+            <div class="playlist__item "
+                 data-season-index="3">
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">1</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="3"
+                         data-series-index="0">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-1.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 4 Series 1</div>
+                    <div class="playlist__series-duration">1:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">2</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="3"
+                         data-series-index="1">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-2.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-2.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 4 Series 2</div>
+                    <div class="playlist__series-duration">2:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">3</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="3"
+                         data-series-index="2">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-3.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-3.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 4 Series 3</div>
+                    <div class="playlist__series-duration">3:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="playlist__series">
+                    <div class="playlist__series-number">4</div>
+                    <div class="playlist__series-preview thumbnail" data-season-index="3"
+                         data-series-index="3">
+                        <div class="playlist__series-preview-item">
+
+                            <video class="playlist__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-4.mp4">
+                            </video>
+
+                            <img class="playlist__series-preview-item-img thumbnail__img"
+                                 src="./media/S2-4.png">
+
+                        </div>
+                    </div>
+                    <div class="playlist__series-title">Title Season 4 Series 4</div>
+                    <div class="playlist__series-duration">4:00 min</div>
+                    <div class="playlist__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal-player modal-player--open-playlist">
+
+    <div class="modal-player__back"></div>
+    <div class="modal-player__close"></div>
+
+    <div class="modal-player__items">
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="0">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="1">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="2">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="3">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="4">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="5">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="6">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="7">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="8">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="9">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="10">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="11">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="12">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="13">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="14">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="15">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="16">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="17">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="18">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="19">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="20">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="0"
+             data-series-index="21">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="1"
+             data-series-index="0">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="1"
+             data-series-index="1">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="1"
+             data-series-index="2">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="1"
+             data-series-index="3">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="2"
+             data-series-index="0">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="2"
+             data-series-index="1">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="2"
+             data-series-index="2">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="2"
+             data-series-index="3">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S1-4.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="3"
+             data-series-index="0">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-1.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="3"
+             data-series-index="1">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-2.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="3"
+             data-series-index="2">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-3.mp4">
+            </video>
+        </div>
+        <div class="modal-player__item" data-season-index="3"
+             data-series-index="3">
+            <video class="video-js modal-player__item-video" controls data-setup='{}' playsinline>
+                <source src="./media/S2-4.mp4">
+            </video>
+        </div>
+    </div>
+
+    <div class="modal-player__playlist">
+        <div class="modal-player__playlist-content custom-scroll">
+
+            <div class="modal-player__playlist-item modal-player__playlist-item--active"
+                 data-season-index="0">
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="0" data-series-number="1">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="0">
+                        <a href=""><div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 1</div>
+                    <div class="modal-player__series-duration">1:00 min</div>
+                    <div class="modal-player__series-description"></div>
+                </div></a>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="1" data-series-number="2">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="1">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 2</div>
+                    <div class="modal-player__series-duration">2:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="2" data-series-number="3">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="2">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 3</div>
+                    <div class="modal-player__series-duration">3:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="3" data-series-number="4">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="3">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 4</div>
+                    <div class="modal-player__series-duration">4:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="4" data-series-number="5">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="4">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 5</div>
+                    <div class="modal-player__series-duration">5:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="5" data-series-number="6">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="5">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 6</div>
+                    <div class="modal-player__series-duration">6:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="6" data-series-number="7">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="6">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 7</div>
+                    <div class="modal-player__series-duration">7:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="7" data-series-number="8">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="7">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 8</div>
+                    <div class="modal-player__series-duration">8:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="8" data-series-number="9">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="8">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 9</div>
+                    <div class="modal-player__series-duration">9:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="9" data-series-number="10">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="9">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 10</div>
+                    <div class="modal-player__series-duration">10:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="10" data-series-number="11">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="10">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 11</div>
+                    <div class="modal-player__series-duration">11:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="11" data-series-number="12">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="11">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 12</div>
+                    <div class="modal-player__series-duration">12:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="12" data-series-number="13">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="12">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 13</div>
+                    <div class="modal-player__series-duration">13:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="13" data-series-number="14">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="13">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 14</div>
+                    <div class="modal-player__series-duration">14:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="14" data-series-number="15">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="14">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 15</div>
+                    <div class="modal-player__series-duration">15:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="15" data-series-number="16">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="15">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 16</div>
+                    <div class="modal-player__series-duration">16:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="16" data-series-number="17">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="16">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 17</div>
+                    <div class="modal-player__series-duration">17:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="17" data-series-number="18">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="17">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 18</div>
+                    <div class="modal-player__series-duration">18:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="18" data-series-number="19">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="18">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 19</div>
+                    <div class="modal-player__series-duration">19:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="19" data-series-number="20">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="19">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 20</div>
+                    <div class="modal-player__series-duration">20:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="20" data-series-number="21">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="20">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 21</div>
+                    <div class="modal-player__series-duration">21:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="0"
+                     data-series-index="21" data-series-number="22">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="0"
+                         data-series-index="21">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 1 Series 22</div>
+                    <div class="modal-player__series-duration">22:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+            <div class="modal-player__playlist-item "
+                 data-season-index="1">
+
+
+                <div class="modal-player__series" data-season-index="1"
+                     data-series-index="0" data-series-number="1">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="1"
+                         data-series-index="0">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 2 Series 1</div>
+                    <div class="modal-player__series-duration">1:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="1"
+                     data-series-index="1" data-series-number="2">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="1"
+                         data-series-index="1">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 2 Series 2</div>
+                    <div class="modal-player__series-duration">2:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="1"
+                     data-series-index="2" data-series-number="3">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="1"
+                         data-series-index="2">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 2 Series 3</div>
+                    <div class="modal-player__series-duration">3:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="1"
+                     data-series-index="3" data-series-number="4">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="1"
+                         data-series-index="3">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 2 Series 4</div>
+                    <div class="modal-player__series-duration">4:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+            <div class="modal-player__playlist-item "
+                 data-season-index="2">
+
+
+                <div class="modal-player__series" data-season-index="2"
+                     data-series-index="0" data-series-number="1">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="2"
+                         data-series-index="0">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-1.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 3 Series 1</div>
+                    <div class="modal-player__series-duration">1:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="2"
+                     data-series-index="1" data-series-number="2">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="2"
+                         data-series-index="1">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 3 Series 2</div>
+                    <div class="modal-player__series-duration">2:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="2"
+                     data-series-index="2" data-series-number="3">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="2"
+                         data-series-index="2">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 3 Series 3</div>
+                    <div class="modal-player__series-duration">3:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="2"
+                     data-series-index="3" data-series-number="4">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="2"
+                         data-series-index="3">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S1-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 3 Series 4</div>
+                    <div class="modal-player__series-duration">4:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+            <div class="modal-player__playlist-item "
+                 data-season-index="3">
+
+
+                <div class="modal-player__series" data-season-index="3"
+                     data-series-index="0" data-series-number="1">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="3"
+                         data-series-index="0">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-1.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S1-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 4 Series 1</div>
+                    <div class="modal-player__series-duration">1:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="3"
+                     data-series-index="1" data-series-number="2">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="3"
+                         data-series-index="1">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-2.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-2.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 4 Series 2</div>
+                    <div class="modal-player__series-duration">2:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="3"
+                     data-series-index="2" data-series-number="3">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="3"
+                         data-series-index="2">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-3.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-3.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 4 Series 3</div>
+                    <div class="modal-player__series-duration">3:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+                <div class="modal-player__series" data-season-index="3"
+                     data-series-index="3" data-series-number="4">
+                    <div class="modal-player__series-preview thumbnail" data-season-index="3"
+                         data-series-index="3">
+                        <div class="modal-player__series-preview-item">
+
+                            <video class="modal-player__series-preview-item-video thumbnail__video" muted
+                                   playsinline>
+                                <source src="./media/S2-4.mp4">
+                            </video>
+
+                            <img class="modal-player__series-item-img thumbnail__img"
+                                 src="./media/S2-4.png">
+                        </div>
+                    </div>
+                    <div class="modal-player__series-title">Season 4 Series 4</div>
+                    <div class="modal-player__series-duration">4:00 min</div>
+                    <div class="modal-player__series-description">April 5, 2022 - Attack on Titan (Japanese: 進撃の巨人, Hepburn: Shingeki no Kyojin, lit. "The Advancing Giants") is a Japanese manga series written and illustrated by Hajime Isayama. It is set in a world where humanity is forced to live in cities</div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="modal-player__playlist-footer">
+
+            <div class="modal-player__playlist-footer-next">
+                <div class="modal-player__playlist-footer-next-button">Next series</div>
+                <div class="modal-player__playlist-footer-next-text">Season 1 Series 2</div>
+            </div>
+
+            <div class="modal-player__playlist-footer-select">
+                <select class="select" data-season-select><option value="0">Season 1</option><option value="1">Season 2</option><option value="2">Season 3</option><option value="3">Season 4</option></select>            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="./plugins/videojs/video.min.js"></script>
+<script src="./plugins/video-flor/videojs-flor.min.js"></script>
+
+<script>
+    const mobileBreakpoint = 1023;
+
+    const $playlist = document.querySelector('.playlist');
+    const playlistOpenModal = 'playlist--open-modal';
+    const $modal = document.querySelector('.modal-player');
+    const modalActiveClass = 'modal-player--active';
+    const $modalClose = document.querySelector('.modal-player__close');
+    const $playlistClose = document.querySelector('.modal-player__back');
+
+
+    const openPlaylistClass = 'modal-player--open-playlist';
+    const videoThumbnails = Array.from(document.querySelectorAll('.thumbnail'));
+    const selects = Array.from(document.querySelectorAll('.select'));
+    const mainSeasonWrappers = Array.from(document.querySelectorAll('.playlist__item'));
+    const modalSeasonWrappers = Array.from(document.querySelectorAll('.modal-player__playlist-item'));
+    const mainSeasonWrapperActiveClass = 'playlist__item--active';
+    const modalSeasonWrapperActiveClass = 'modal-player__playlist-item--active';
+
+    const videoItemClass = 'modal-player__item';
+    const videoItemActiveClass = 'modal-player__item--active';
+    const videoItems = Array.from(document.querySelectorAll(`.${videoItemClass}`));
+    const $titleSeasonNumber = document.querySelector('.playlist__title-number');
+    const $nextButton = document.querySelector('.modal-player__playlist-footer-next-button');
+    const nextButtonDisabledClass = 'modal-player__playlist-footer-next-button--disabled';
+    const $nextText = document.querySelector('.modal-player__playlist-footer-next-text');
+
+    const players = Array.from(document.querySelectorAll('.video-js'));
+    const loopButtonClass = 'loop-button';
+    const loopButtonActiveClass = 'loop-button--active';
+    const togglePlaylistButtonClass = 'toggle-playlist';
+    const togglePlaylistButtonActiveClass = 'toggle-playlist--active';
+
+    const playlistSeriesClass = 'modal-player__series';
+    const playlistSeriesPlayingClass = 'modal-player__series--playing';
+    const playlistSeries = Array.from(document.querySelectorAll(`.${playlistSeriesClass}`));
+
+
+    const Button = videojs.getComponent('Button');
+
+    let currentSeason = 0;
+    let currentSeries = 0;
+    let loopState = false;
+
+    const loopButton = videojs.extend(Button, {
+        constructor: function () {
+            Button.apply(this, arguments);
+            this.addClass(loopButtonClass);
+        },
+        handleClick: function () {
+            const videoContent = this.player().el().querySelector('video');
+            const $loopButton = this.player().el().querySelector(`.${loopButtonClass}`);
+
+            if ($loopButton.classList.contains(loopButtonActiveClass)) {
+                $loopButton.classList.remove(loopButtonActiveClass);
+                loopState = false;
+            } else {
+                $loopButton.classList.add(loopButtonActiveClass);
+                loopState = true;
+            }
+        }
+    });
+
+    const togglePlaylistButton = videojs.extend(Button, {
+        constructor: function () {
+            Button.apply(this, arguments);
+            this.addClass(togglePlaylistButtonClass);
+        },
+        handleClick: function () {
+            const $togglePlaylistButton = this.player().el().querySelector(`.${togglePlaylistButtonClass}`);
+
+            if ($modal.classList.contains(openPlaylistClass)) {
+                $togglePlaylistButton.classList.remove(togglePlaylistButtonActiveClass);
+                $modal.classList.remove(openPlaylistClass);
+            } else {
+                $togglePlaylistButton.classList.add(togglePlaylistButtonActiveClass);
+                $modal.classList.add(openPlaylistClass);
+            }
+        }
+    });
+
+    class Select {
+
+        /* Example options
+        {
+            selectClass:'select',     // String
+            $select:document.getElementsByClassName(this.selectClass)[0],       // node element
+            customSelectClass:'custom-select',     // String
+        }
+         */
+
+        constructor(options) {
+            this.selectClass = options && options.selectClass ?
+                options.selectClass :
+                'select';
+            this.$select = options && options.$select ?
+                options.$select :
+                document.getElementsByClassName(this.selectClass)[0];
+            this.customSelectClass = options && options.customSelectClass ?
+                options.customSelectClass :
+                'custom-select';
+            this.openClass = options && options.openClass ?
+                options.openClass :
+                this.customSelectClass + '--open';
+            this.selectedClass = options && options.selectedClass ?
+                options.selectedClass :
+                this.customSelectClass + '--selected';
+            this.itemClass = options && options.itemClass ?
+                options.itemClass :
+                this.customSelectClass + '__item';
+            this.selectedItemClass = options && options.selectedItemClass ?
+                options.selectedItemClass :
+                this.itemClass + '--selected';
+            this.disabledItemClass = options && options.disabledItemClass ?
+                options.disabledItemClass :
+                this.itemClass + '--disabled';
+            this.invertPositionClass = options && options.invertPositionClass ?
+                options.invertPositionClass :
+                this.customSelectClass + '--invert';
+            this.$customSelect = document.createElement('div');
+            this.current = null;
+            this.options = Array.from(this.$select.getElementsByTagName('option'));
+            this.changeEvent = new Event('change', {bubbles: true});
+            this.data = this.getSelectData();
+            this.init();
+        }
+
+        init() {
+            this.$select.parentElement.appendChild(this.$customSelect).tabIndex = 0;
+            this.$customSelect.classList.add(this.customSelectClass);
+            this.$customSelect.appendChild(this.$select);
+            this.setHtml();
+            this.setKeyboardManage();
+        }
+
+        getSelectData() {
+            this.options = Array.from(this.$select.getElementsByTagName('option'));
+            let optionsArray = new Map();
+
+            this.options.map((item, index) => {
+                let value = item.hasAttribute('value') ?
+                    item.getAttribute('value') :
+                    item.innerText;
+
+                let selected = false;
+
+                if (item.hasAttribute('selected')) {
+                    this.current = index;
+                    selected = true;
+                }
+
+                const option = {
+                    name: item.innerText,
+                    selected: item.hasAttribute('selected'),
+                    disabled: item.hasAttribute('disabled'),
+                    hidden: item.hasAttribute('hidden'),
+                    index: index
+                };
+
+                optionsArray.set('index' + option.index, option);
+            });
+
+            if (this.current === null) {
+                this.current = optionsArray.get('index' + 0).index;
+            }
+            return optionsArray;
+        }
+
+        setHtml() {
+            const template = `
+            <div data-select-type="button" class="${this.customSelectClass}__input">
+                <div data-select-type="button" class="${this.customSelectClass}__input-name">${this.data.get('index' + this.current).name}</div>
+                <div data-select-type="button" class="${this.customSelectClass}__input-icon"></div>
+            </div>
+            <div data-select-type="button" class="${this.customSelectClass}__list custom-scroll"></div>
+        `;
+
+            this.$customSelect.insertAdjacentHTML('beforeEnd', template);
+
+            this.setListHtml();
+            this.setup();
+            this.checkPosition();
+        }
+
+        setListHtml() {
+            let $list = this.$customSelect.querySelector(`.${this.customSelectClass}__list`);
+            let list = '';
+
+            for (let item of this.data.values()) {
+                if (!item.hidden) {
+                    let classDisabled = '';
+                    let classSelected = '';
+
+                    if (item.selected) {
+                        classSelected = this.selectedItemClass;
+                    }
+
+                    if (item.disabled) {
+                        classDisabled = this.disabledItemClass;
+                    }
+
+                    list += `<div data-select-index="${item.index}" tabindex="0" data-select-type="value" class="${this.customSelectClass}__item ${classSelected} ${classDisabled}">${item.name}</div>`;
+                }
+            }
+
+            $list.innerHTML = '';
+            $list.insertAdjacentHTML('beforeEnd', list);
+        }
+
+        setup() {
+            this.clickHandler = this.clickHandler.bind(this);
+            this.changeHandler = this.changeHandler.bind(this);
+            document.addEventListener('click', this.clickHandler);
+            window.addEventListener('scroll', this.checkPosition);
+            this.$select.addEventListener('change', this.changeHandler);
+            this.$name = this.$customSelect.querySelector('.' + this.customSelectClass + '__input-name');
+            this.$items = this.$customSelect.querySelectorAll('.' + this.customSelectClass + '__item');
+        }
+
+        checkPosition() {
+
+            if (!this.$customSelect) {
+                return;
+            }
+
+            const top = this.$customSelect.getBoundingClientRect().top;
+            const freePlace = window.innerHeight - this.$customSelect.getBoundingClientRect().height - 250;
+
+            if (top > freePlace) {
+                this.$customSelect.classList.add(this.invertPositionClass);
+            } else {
+                this.$customSelect.classList.remove(this.invertPositionClass);
+            }
+        }
+
+        clickHandler(event) {
+            const isSelectClick = (click) => {
+                if (click === this.$customSelect) {
+                    return true;
+                } else if (click.closest('.' + this.customSelectClass) && click.closest('.' + this.customSelectClass) === this.$customSelect) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+
+            if (isSelectClick(event.target)) {
+                const type = event.target.dataset.selectType;
+                if (type === 'button') {
+                    this.toggle();
+                } else if (type === 'value') {
+                    if (!event.target.classList.contains(this.disabledItemClass)) {
+                        this.current = event.target.dataset.selectIndex;
+                        this.select(this.current);
+                        this.close();
+                    }
+                }
+            } else {
+                this.close();
+            }
+        }
+
+        changeHandler(event) {
+            this.options = Array.from(this.$select.getElementsByTagName('option'));
+
+            this.options.map((item, index) => {
+                let value;
+
+                if (item.hasAttribute('value')) {
+                    value = item.getAttribute('value');
+                } else {
+                    value = item.innerText;
+                }
+
+                if (value === this.$select.value) {
+                    this.setSelectHtml(index);
+                }
+            });
+
+            if (this.$select.value === 'default') {
+                this.$customSelect.classList.remove(this.selectedClass);
+            } else {
+                this.$customSelect.classList.add(this.selectedClass);
+            }
+        }
+
+        select(index) {
+            this.current = index;
+            this.$select.value = this.options[index].value;
+            this.$select.dispatchEvent(this.changeEvent);
+        }
+
+        setSelectHtml(index) {
+            this.$name.innerText = this.data.get('index' + index).name;
+
+            this.$items.forEach(($item) => {
+                if (parseInt($item.dataset.selectIndex) === index && this.$select.value !== 'default') {
+                    $item.classList.add(this.selectedItemClass);
+                } else {
+                    $item.classList.remove(this.selectedItemClass);
+                }
+            });
+
+            if (this.$select.value === 'default') {
+                this.$customSelect.classList.remove(this.selectedClass);
+            } else {
+                this.$customSelect.classList.add(this.selectedClass);
+            }
+        }
+
+        refresh() {
+            this.data = this.getSelectData();
+            this.setListHtml();
+            this.select(this.current);
+        }
+
+        toggle() {
+            if (this.$customSelect.classList.contains(this.openClass)) {
+                this.close();
+            } else {
+                this.open();
+            }
+        }
+
+        open() {
+            this.$customSelect.classList.add(this.openClass);
+        }
+
+        close() {
+            this.$customSelect.classList.remove(this.openClass);
+        }
+
+        setKeyboardManage() {
+            const down = 'ArrowDown';
+            const up = 'ArrowUp';
+            const space = 'Space';
+            const enter = 'Enter';
+            const escape = 'Escape';
+            const specialKeys = [
+                down,
+                up,
+                space,
+                enter,
+                escape,
+            ];
+
+            this.$customSelect.addEventListener('keydown', event => {
+                const isOpen = this.$customSelect.classList.contains(this.openClass);
+
+                if (specialKeys.indexOf(event.code) !== -1) {
+                    event.preventDefault();
+                    const $list = Array.from(this.$customSelect.querySelectorAll(`.${this.itemClass}`));
+
+                    if (!isOpen && event.code === enter) {
+                        return;
+                    }
+
+                    if (!isOpen) {
+                        if (event.code === space) {
+                            this.open();
+                            return;
+                        }
+
+                        if (event.code === down || event.code === up) {
+                            this.open();
+
+                            if (event.code === down) {
+                                $list[0].focus();
+                            }
+
+                            if (event.code === up) {
+                                $list[$list.length - 1].focus();
+                            }
+
+                            return;
+                        }
+
+                        return;
+                    }
+
+                    if (isOpen) {
+                        const currentIndex = $list.indexOf(document.activeElement);
+
+                        if (event.code === escape) {
+                            this.close();
+                            this.$customSelect.focus();
+                        }
+
+                        if (event.code === down) {
+                            const nextIndex = currentIndex + 1 === $list.length ?
+                                0 :
+                                currentIndex + 1;
+                            $list[nextIndex].focus();
+                        }
+
+                        if (event.code === up) {
+                            const nextIndex = currentIndex - 1 < 0 ?
+                                $list.length - 1 :
+                                currentIndex - 1;
+                            $list[nextIndex].focus();
+                        }
+
+                        if (event.code === space || event.code === enter) {
+                            if (document.activeElement.classList.contains(this.itemClass)) {
+                                this.select(document.activeElement.dataset.selectIndex);
+                                this.close();
+                                this.$customSelect.focus();
+                            }
+                        }
+                    }
+                }
+
+            });
+
+        }
+    }
+
+    function playThumbnail($thumbnail) {
+        const $video = $thumbnail.querySelector('.thumbnail__video');
+        const $img = $thumbnail.querySelector('.thumbnail__img');
+
+        $thumbnail.addEventListener('mouseenter', () => {
+            $video.play();
+            $img.style.opacity = 0;
+        });
+
+        $thumbnail.addEventListener('mouseleave', () => {
+            $video.pause();
+            $video.currentTime = 0;
+            $img.style.opacity = 1;
+        });
+
+    }
+
+    function changeSeason(season) {
+        currentSeason = season;
+        currentSeries = 0;
+
+        mainSeasonWrappers.forEach(($mainSeasonWrapper) => {
+            if (+$mainSeasonWrapper.dataset.seasonIndex === currentSeason) {
+                $mainSeasonWrapper.classList.add(mainSeasonWrapperActiveClass);
+            } else {
+                $mainSeasonWrapper.classList.remove(mainSeasonWrapperActiveClass);
+            }
+        });
+
+        modalSeasonWrappers.forEach(($modalSeasonWrapper) => {
+            if (+$modalSeasonWrapper.dataset.seasonIndex === currentSeason) {
+                $modalSeasonWrapper.classList.add(modalSeasonWrapperActiveClass);
+            } else {
+                $modalSeasonWrapper.classList.remove(modalSeasonWrapperActiveClass);
+            }
+        });
+
+        videoItems.forEach(($videoItem) => {
+            $videoItem.querySelector('video').pause();
+            $videoItem.querySelector('video').currentTime = 0;
+
+            if (+$videoItem.dataset.seasonIndex === currentSeason && +$videoItem.dataset.seriesIndex === 0) {
+                $videoItem.classList.add(videoItemActiveClass);
+            } else {
+                $videoItem.classList.remove(videoItemActiveClass);
+            }
+        });
+
+        selects.forEach(($select) => {
+            $select.value = currentSeason;
+            $select.dispatchEvent(new Event('change'));
+        });
+
+        $titleSeasonNumber.innerText = currentSeason + 1;
+
+        setNextButton();
+    }
+
+    function calcNext() {
+        let targetSeason = currentSeason;
+        let isTargetSeason = false;
+        let targetSeries = currentSeries + 1;
+        let lastSeason = 0;
+
+        videoItems.forEach(($videoItem) => {
+            if (+$videoItem.dataset.seasonIndex > lastSeason) {
+                lastSeason = +$videoItem.dataset.seasonIndex;
+            }
+        });
+
+        videoItems.forEach(($videoItem) => {
+            if (+$videoItem.dataset.seasonIndex === targetSeason && +$videoItem.dataset.seriesIndex === targetSeries) {
+                isTargetSeason = true;
+            }
+        });
+
+
+        if (isTargetSeason) {
+            return {
+                targetSeason,
+                targetSeries
+            };
+        } else if (targetSeason + 1 > lastSeason) {
+            return false;
+        } else {
+            return {
+                targetSeason: targetSeason + 1,
+                targetSeries: 0
+            };
+        }
+
+
+    }
+
+    function setNextButton() {
+
+        let next = calcNext();
+
+        if (next) {
+            $nextButton.classList.remove(nextButtonDisabledClass);
+            $nextButton.dataset.seasonIndex = next.targetSeason;
+            $nextButton.dataset.seriesIndex = next.targetSeries;
+            $nextText.innerText = `Season ${next.targetSeason + 1} Series ${next.targetSeries + 1}`;
+        } else {
+            $nextButton.classList.add(nextButtonDisabledClass);
+            $nextText.innerText = `This is last series`;
+        }
+    }
+
+    function playVideo(season, series) {
+        if (!$modal.classList.contains(modalActiveClass)) {
+            $modal.classList.add(modalActiveClass);
+            $modal.dispatchEvent(new Event('open'));
+        }
+
+        if (window.innerWidth <= mobileBreakpoint) {
+            $modal.classList.remove(openPlaylistClass);
+        }
+
+        currentSeason = season;
+        currentSeries = series;
+
+        videoItems.forEach(($videoItem) => {
+            $videoItem.querySelector('video').pause();
+            $videoItem.querySelector('video').currentTime = 0;
+
+            if (+$videoItem.dataset.seasonIndex === currentSeason && +$videoItem.dataset.seriesIndex === currentSeries) {
+                $videoItem.classList.add(videoItemActiveClass);
+                $videoItem.querySelector('video').play();
+            } else {
+                $videoItem.classList.remove(videoItemActiveClass);
+            }
+        });
+
+        setNextButton();
+    }
+
+    function setPlayingClass(season, series) {
+        playlistSeries.forEach(($playlistSeriesItem) => {
+            const playlistSeriesSeason = +$playlistSeriesItem.dataset.seasonIndex;
+            const playlistSeriesSeries = +$playlistSeriesItem.dataset.seriesIndex;
+
+            if (playlistSeriesSeason === season && playlistSeriesSeries === series) {
+                $playlistSeriesItem.classList.add(playlistSeriesPlayingClass);
+            } else {
+                $playlistSeriesItem.classList.remove(playlistSeriesPlayingClass);
+            }
+        });
+    }
+
+    function playNext() {
+        if ($nextButton.classList.contains(nextButtonDisabledClass)) {
+            return;
+        }
+
+        const targetSeason = +$nextButton.dataset.seasonIndex;
+        const targetSeries = +$nextButton.dataset.seriesIndex;
+
+        if (targetSeason !== currentSeason) {
+            changeSeason(targetSeason);
+        }
+
+        playVideo(targetSeason, targetSeries);
+    }
+
+    videoThumbnails.forEach(($thumbnail) => {
+        playThumbnail($thumbnail);
+
+        $thumbnail.addEventListener('click', () => {
+            playVideo(+$thumbnail.dataset.seasonIndex, +$thumbnail.dataset.seriesIndex);
+        });
+    });
+
+    playlistSeries.forEach(($playlistSeries) => {
+        $playlistSeries.addEventListener('click', () => {
+            playVideo(+$playlistSeries.dataset.seasonIndex, +$playlistSeries.dataset.seriesIndex);
+        });
+    });
+
+    selects.forEach(($select) => {
+        const select = new Select({
+            $select: $select,
+        });
+
+        $select.addEventListener('change', () => {
+            if (+$select.value !== currentSeason) {
+                changeSeason(+$select.value);
+            }
+        });
+
+        $modal.addEventListener('open', () => {
+            select.checkPosition();
+        });
+
+    });
+
+    $nextButton.addEventListener('click', () => {
+        playNext();
+    });
+
+    $modalClose.addEventListener('click', () => {
+        $modal.classList.remove(modalActiveClass);
+        $playlist.classList.remove(playlistOpenModal);
+
+        videoItems.forEach(($videoItem) => {
+            $videoItem.querySelector('video').pause();
+            $videoItem.querySelector('video').currentTime = 0;
+        });
+
+        setPlayingClass(-1, -1);
+    });
+
+    $playlistClose.addEventListener('click', () => {
+
+        if ($modal.classList.contains(openPlaylistClass)) {
+            $modal.classList.remove(openPlaylistClass);
+
+            Array.from(document.querySelectorAll(togglePlaylistButton)).forEach(($togglePlaylistButton) => {
+                $togglePlaylistButton.classList.remove(togglePlaylistButtonActiveClass);
+            });
+        } else {
+            $modal.classList.add(openPlaylistClass);
+
+            Array.from(document.querySelectorAll(togglePlaylistButton)).forEach(($togglePlaylistButton) => {
+                $togglePlaylistButton.classList.add(togglePlaylistButtonActiveClass);
+            });
+        }
+
+
+    });
+
+    videojs.registerComponent('loopButton', loopButton);
+
+    videojs.registerComponent('togglePlaylistButton', togglePlaylistButton);
+
+    players.forEach(($player) => {
+        const player = videojs($player);
+        player.getChild('controlBar').addChild('loopButton', {}, 9);
+        player.getChild('controlBar').addChild('togglePlaylistButton', {}, 9);
+
+        player.on('play', () => {
+            setPlayingClass(+$player.closest(`.${videoItemClass}`).dataset.seasonIndex, +$player.closest(`.${videoItemClass}`).dataset.seriesIndex);
+        });
+
+        player.on('ready', () => {
+            const $togglePlaylistButton = player.el().querySelector(`.${togglePlaylistButtonClass}`);
+
+            if ($modal.classList.contains(openPlaylistClass)) {
+                $togglePlaylistButton.classList.add(togglePlaylistButtonActiveClass);
+            } else {
+                $togglePlaylistButton.classList.remove(togglePlaylistButtonActiveClass);
+            }
+        });
+
+        player.on('ended', () => {
+            if (loopState) {
+                playNext();
+            }
+        });
+    });
+
+</script>
+<script src="VideoForLifeJs.js"></script>
+
+</body>
+
+</html>
