@@ -867,7 +867,7 @@ body.vjs-full-window {
 }
 
 .video-js .vjs-progress-control .vjs-progress-holder {
-    margin: 0 10px
+    margin: 0
 }
 
 .video-js .vjs-progress-control:hover .vjs-progress-holder {
