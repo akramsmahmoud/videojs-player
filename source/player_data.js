@@ -2,7 +2,7 @@ const player_data_source = [
     {
         season_id: 0,
         series_id:0,
-        series_url: 'http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8',
+        series_url: 'http://amssamples.streaming.mediaservices.windows.net/634cd01c-6822-4630-8444-8dd6279f94c6/CaminandesLlamaDrama4K.ism/manifest(format=m3u8-aapl)',
     },
     {
         season_id: 0,
