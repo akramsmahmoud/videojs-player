@@ -1130,7 +1130,7 @@
 </div>
 
 <script src="./plugins/videojs/video.min.js"></script>
-<!-- <script src="./plugins/videojs/videojs-contrib-hls.min.js"></script> -->
+<script src="./plugins/videojs/videojs-contrib-hls.min.js"></script>
 <script src="./plugins/video-flor/videojs-flor.min.js"></script>
 <script src="./plugins/thumbnails-generator/index.js"></script>
 <script src="./plugins/video-thumbnail/videojs.thumbnail.js"></script>
@@ -1995,48 +1995,71 @@
                     return;
                 }
 
-                //CHECK if Norma HLS
+                //CHECK if HLS
                 if (vid.currentType() === 'application/x-mpegURL') {
                     let allThumb = [];
-                    let seconds = 0;
-                    const thumbnailsNumToGenerate = Math.round(vid.duration() / 50);
-                    let items = [];
-                    for(let i=0;i< thumbnailsNumToGenerate; i++){
-                        items.push(getHlsVideoCover(vid.currentSrc(), seconds));
-                        //allThumb[seconds] = { src: item }
-                        seconds += 50;
+                    for(let i =0; i < 3; i++) {
+                        let seconds = 0;
+                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
+                        let items = [];
+                        for (let i = 0; i < thumbnailsNumToGenerate; i++) {
+                            items.push(getHlsVideoCover(vid.currentSrc(), seconds));
+                            seconds += 10;
+                        }
+                        const results = await Promise.all(items).then(res => {
+                            allThumb = Object.assign({}, ...res.map((x) => (x)));
+                            vid.thumbnails(allThumb);
+                        })
+                        console.log({ ...allThumb })
+                        if(Object.keys(allThumb).length > 5){
+                            break;
+                        }
                     }
-                    const results = await Promise.all(items).then(res => {
-                        allThumb =  Object.assign({}, ...res.map((x) => (x)));
-                        vid.thumbnails(allThumb);
-                    })
-                    console.log({...allThumb})
                     //vid.thumbnails(allThumb);
                     return;
+                } else {
+                    let allThumb = [];
+                    for (let i = 0; i < 3; i++) {
+                        let seconds = 0;
+                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
+                        let items = [];
+                        for (let i = 0; i < thumbnailsNumToGenerate; i++) {
+                            items.push(getVideoCover(vid.currentSrc(), seconds));
+                            seconds += 10;
+                        }
+                        const results = await Promise.all(items).then(res => {
+                            allThumb = Object.assign({}, ...res.map((x) => (x)));
+                            vid.thumbnails(allThumb);
+                        })
+                        console.log({ ...allThumb })
+                        if (Object.keys(allThumb).length > 5) {
+                            break;
+                        }
+                    }
                 }
 
-                setTimeout(() =>{
-                         fetch(vid.currentSrc())
-                             .then(response => response.blob())
-                             .then(async (blob) => {
-                                 const file = new File([blob], `test`, {
-                                     type: blob.type
-                                 })
+                // setTimeout(() =>{
+                //          fetch(vid.currentSrc())
+                //              .then(response => response.blob())
+                //              .then(async (blob) => {
+                //                  const file = new File([blob], `test`, {
+                //                      type: blob.type
+                //                  })
 
-                                 const allThumb = {};
-                                 const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
+                //                  const allThumb = {};
+                //                  const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
 
-                                 await generateVideoThumbnails(file, thumbnailsNumToGenerate).then((thumbArray) => {
-                                     let seconds = 0;
-                                     thumbArray.map((item) => {
-                                         allThumb[seconds] = {src: item}
-                                         seconds += 10;
-                                     })
-                                     console.log(allThumb);
-                                     vid.thumbnails(allThumb);
-                                 })
-                             })
-                 },0)
+                //                  await generateVideoThumbnails(file, thumbnailsNumToGenerate).then((thumbArray) => {
+                //                      let seconds = 0;
+                //                      thumbArray.map((item) => {
+                //                          allThumb[seconds] = {src: item}
+                //                          seconds += 10;
+                //                      })
+                //                      console.log(allThumb);
+                //                      vid.thumbnails(allThumb);
+                //                  })
+                //              })
+                //  },0)
             } else {
                 $videoItem.classList.remove(videoItemActiveClass);
             }
