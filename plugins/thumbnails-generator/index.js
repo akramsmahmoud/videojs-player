@@ -123,8 +123,8 @@ const generateVideoThumbnailViaUrl = (urlOfFIle, videoTimeInSeconds) => {
             });
             var snapImage = function () {
                 var canvas = document.createElement("canvas");
-                canvas.width = 500;
-                canvas.height = 280;
+                canvas.width = 400;
+                canvas.height = 224;
                 canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
                 var image = canvas.toBlob(
                     blob => {
@@ -291,8 +291,8 @@ const getVideoCover = (file, seekTo = 0.0) => {
                 // console.log('video is now paused at %ss.', seekTo);
                 // define a canvas to have the same dimension as the video
                 const canvas = document.createElement("canvas");
-                canvas.width = 500;
-                canvas.height = 280;
+                canvas.width = 400;
+                canvas.height = 224;
                 // draw the video frame to canvas
                 const ctx = canvas.getContext("2d");
                 ctx.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);
@@ -342,8 +342,8 @@ const getHlsVideoCover = (file, seekTo = 0.0) => {
                 // console.log('video is now paused at %ss.', seekTo);
                 // define a canvas to have the same dimension as the video
                 const canvas = document.createElement("canvas");
-                canvas.width = 500;
-                canvas.height = 280;
+                canvas.width = 400;
+                canvas.height = 224;
                 // draw the video frame to canvas
                 const ctx = canvas.getContext("2d");
                 ctx.drawImage(videoPlayer, 0, 0, canvas.width, canvas.height);

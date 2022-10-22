@@ -229,6 +229,18 @@
             z-index: 2;
         }
 
+        .playlist__series-preview-item-time {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            background-color: rgba(0, 0, 0, .5);
+            z-index: 999;
+            font-size: 11px;
+            padding: 2px;
+            border-radius: 2px;
+            z-index: 99;
+        }
+
         .playlist__series-title {
             grid-area: title;
             font-size: 16px;
@@ -268,13 +280,14 @@
             border-radius: 5px;
             text-transform: capitalize;
             color: #fff;
-            border: 2px solid #2463eb;
+            border: 1px solid #ccc;
             transition: all 0.3s ease-in-out;
             width: 250px;
             background: transparent;
         }
-
-
+        .border-gradient #PlayButtonIcon{
+            margin-right: 6px;
+        }
         /* .border-gradient:hover {
         color:/*#00ddff*#9dd7e0;
         
@@ -297,8 +310,8 @@
         .top-progress-bar{
             width: 100%;
             position: absolute;
-            bottom: -7px;
-            height: 7px;
+            bottom: -11px;
+            height: 5px;
             border-radius: 0;
         }
         progress::-webkit-progress-bar {
@@ -643,6 +656,9 @@
         .video-js.vjs-user-active .vjs-button.close{
             opacity: 1
         }
+        .video-js .vjs-play-progress .vjs-time-tooltip{
+            display: none !important;
+        }
 
         a{
             color:transparent;
@@ -686,7 +702,7 @@
             border-radius: 5px;
             text-transform: capitalize;
             color: #fff;
-            border: 2px solid #2463eb;
+            border: 1px solid #ccc;
             transition: all 0.3s ease-in-out;
             background: #242526;
         }
@@ -703,7 +719,7 @@
         }
 
         .custom-select:focus {
-            border-color: #2463eb;
+            border-color: #ccc;
             outline: none;
         }
         .modal-player__season-select .custom-select,.modal-player__season-select .custom-select:focus{
@@ -816,10 +832,10 @@
 
         .custom-select__list {
             position: absolute;
-            left: -2px;
+            left: -1px;
             top: 100%;
-            width: calc(100% + 4px);
-            border: 2px solid;
+            width: calc(100% + 2px);
+            border: 1px solid;
             background: inherit;
             border-color: inherit;
             border-top-color: transparent;
@@ -1130,7 +1146,7 @@
 </div>
 
 <script src="./plugins/videojs/video.min.js"></script>
-<script src="./plugins/videojs/videojs-contrib-hls.min.js"></script>
+<!-- <script src="./plugins/videojs/videojs-contrib-hls.min.js"></script> -->
 <script src="./plugins/video-flor/videojs-flor.min.js"></script>
 <script src="./plugins/thumbnails-generator/index.js"></script>
 <script src="./plugins/video-thumbnail/videojs.thumbnail.js"></script>
@@ -1138,7 +1154,7 @@
 <script src="./source/playlist_data.js"></script>
 <script src="./source/player_data.js"></script>
 <script src="https://kit.fontawesome.com/e1a33f0f5e.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@popperjs/core@2"></script>
+<!-- <script src="https://unpkg.com/@popperjs/core@2"></script> -->
 <!-- <script src="https://unpkg.com/tippy.js@6"></script> -->
 <script>
     //render player series items
@@ -1211,6 +1227,7 @@
 
                     <img class="playlist__series-preview-item-img thumbnail__img"
                             src="${video_poster}">
+                            <span class="playlist__series-preview-item-time thumbnail__time">1:11</span>
                     <progress id='top-progress-bar' class='top-progress-bar' min='0' max='100' value='0'>0%
                                     played</progress>
                 </div>
@@ -1459,7 +1476,11 @@
     videojs.registerComponent('closeButton', closeButton);
     videojs.registerComponent('changeSeasonButton', changeSeasonButton);
     players.forEach(($player, index) => {
-        const player = videojs($player);
+        const player = videojs($player, {
+            controlBar: {
+                pictureInPictureToggle: false
+            }
+        });
         if (player.currentType() === 'application/x-mpegURL') {
             var flor = window.flor = player.flor();
             setQualityLevels(player);
@@ -1479,7 +1500,6 @@
             document.querySelector('.modal-player__season-select').classList.remove('active');
         })
 
-
         closeBtn.el().addEventListener('click', () => {
             player.pause()
             $modal.classList.remove(modalActiveClass);
@@ -1488,6 +1508,7 @@
                 document.exitFullscreen()
             }
         })
+
 
         player.on('play', () => {
             setPlayingClass(+$player.closest(`.${videoItemClass}`).dataset.seasonIndex, +$player.closest(`.${videoItemClass}`).dataset.seriesIndex);
@@ -1851,14 +1872,27 @@
         const $video = $thumbnail.querySelector('.thumbnail__video');
         const $img = $thumbnail.querySelector('.thumbnail__img');
 
+        const format = (s) =>  {
+            var m = Math.floor(s / 60);
+            m = (m >= 10) ? m : "0" + m;
+            s = Math.floor(s % 60);
+            s = (s >= 10) ? s : "0" + s;
+            return m + ":" + s;
+        }
+        $video.onloadedmetadata = function () {
+            if($video.classList.contains('playlist__series-preview-item-video')){
+                const $time = $thumbnail.querySelector('.thumbnail__time').innerText = format($video.duration);
+            }
+        };
+
         $thumbnail.addEventListener('mouseenter', () => {
             $video.play();
             $img.style.opacity = 0;
         });
 
         $thumbnail.addEventListener('mouseleave', () => {
-            //$video.pause();
-            //$video.currentTime = 0;
+            $video.pause();
+            $video.currentTime = 0;
             $img.style.opacity = 1;
         });
 
@@ -2000,11 +2034,11 @@
                     let allThumb = [];
                     for(let i =0; i < 3; i++) {
                         let seconds = 0;
-                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
+                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 5);
                         let items = [];
                         for (let i = 0; i < thumbnailsNumToGenerate; i++) {
                             items.push(getHlsVideoCover(vid.currentSrc(), seconds));
-                            seconds += 10;
+                            seconds += 5;
                         }
                         const results = await Promise.all(items).then(res => {
                             allThumb = Object.assign({}, ...res.map((x) => (x)));
@@ -2021,11 +2055,11 @@
                     let allThumb = [];
                     for (let i = 0; i < 3; i++) {
                         let seconds = 0;
-                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
+                        const thumbnailsNumToGenerate = Math.round(vid.duration() / 5);
                         let items = [];
                         for (let i = 0; i < thumbnailsNumToGenerate; i++) {
                             items.push(getVideoCover(vid.currentSrc(), seconds));
-                            seconds += 10;
+                            seconds += 5;
                         }
                         const results = await Promise.all(items).then(res => {
                             allThumb = Object.assign({}, ...res.map((x) => (x)));

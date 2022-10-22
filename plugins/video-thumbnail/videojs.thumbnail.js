@@ -1,7 +1,7 @@
 (function() {
   var defaults = {
       0: {
-        src: 'example-thumbnail.png'
+        src: 'default-thumbnail.png'
       }
     },
     extend = function() {
@@ -98,8 +98,8 @@
     div = document.createElement('div');
     div.className = 'vjs-thumbnail-holder';
     img = document.createElement('img');
-    img.width = 500;
-    img.height = 280;
+    img.width = 400;
+    img.height = 224;
     div.appendChild(img);
     img.src = settings['0'].src;
     img.className = 'vjs-thumbnail';
@@ -128,8 +128,25 @@
     // add the thumbnail to the player
     progressControl = player.controlBar.progressControl;
     progressControl.el().appendChild(div);
-
+    const too = player.getChild('controlBar')
+      .getChild('progressControl')
+      .getChild('seekBar')
+      .getChild('mouseTimeDisplay').getChild('timeTooltip')
     moveListener = function(event) {
+
+      seekBar = player.controlBar.progressControl.seekBar;
+      var mousePosition = (event.pageX - seekBar.el().offsetLeft) / seekBar.width();
+      timeInSeconds = mousePosition * player.duration();
+      if (timeInSeconds === player.duration()) {
+        timeInSeconds = timeInSeconds - 0.1;
+      }
+      minutes = Math.floor(timeInSeconds / 60);
+      seconds = Math.floor(timeInSeconds - minutes * 60);
+      if (seconds < 10) {
+        seconds = "0" + seconds;
+      }
+      progressControl.el().querySelector('.vjs-time-tooltip').innerText = `${minutes}:${seconds}`;
+
       var mouseTime, time, active, left, setting, pageX, right, width, halfWidth, pageXOffset, clientRect;
       active = 0;
       pageXOffset = getScrollOffset().x;
@@ -175,16 +192,24 @@
         left = halfWidth;
       }
 
-      if(left < 250){
-        left = 250;
+      if(left < 200){
+        left = 200;
       }
 
       
       if (left > (clientRect.width - (img.width / 2))){
         left = clientRect.width - (img.width/2)
       }
-
+      
+      player.getChild('controlBar')
+        .getChild('progressControl')
+        .getChild('seekBar')
+        .getChild('mouseTimeDisplay').update = function(){
+          this.el().style.left = left + 'px';
+        };
       div.style.left = left + 'px';
+      
+      
     };
 
     // update the thumbnail while hovering
