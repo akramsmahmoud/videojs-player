@@ -135,12 +135,9 @@
             }
         }
 
-        .playlist__items {
-        }
-
         .playlist__item {
             display: none;
-            /* border-bottom: 1px solid var(--main-element-color); */
+            background: #444;
         }
 
         @media (max-width: 1023px) {
@@ -161,6 +158,9 @@
             grid-template-rows: 30px 1fr;
             grid-column-gap: 15px;
             padding: 20px 0;
+        }
+        .playlist__series--lastWatched{
+            background: #333;
         }
 
         @media (max-width: 1023px) {
@@ -313,6 +313,10 @@
             bottom: -11px;
             height: 5px;
             border-radius: 0;
+        }
+        #bottom-progress-bar{
+            border-radius: 0;
+            height: 5px;
         }
         progress::-webkit-progress-bar {
         /* style rules */
@@ -1122,6 +1126,9 @@
                 <span></span><span><i id="PlayButtonIcon" class="fas fa-play"></i> <span class="traxer">Play Video</span> </span>
             </button>
         </div>
+        <div>
+            <progress id="bottom-progress-bar" min="0" max="100" value="33">33% played</progress>
+        </div>
 
         <div class="playlist__items"></div>
     </div>
@@ -1277,6 +1284,7 @@
         return series_template;
     }
 </script>
+<script src="VideoForLifeJs.js"></script>
 <script>
     function setQualityLevels(player) {
         //quality videojs     
@@ -2217,7 +2225,7 @@
 
     });
 </script>
-<script src="VideoForLifeJs.js"></script>
+
 </body>
 
 </html>

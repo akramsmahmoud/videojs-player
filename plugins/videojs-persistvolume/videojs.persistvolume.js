@@ -120,6 +120,6 @@
     });
   };
 
-  vjs.plugin("persistvolume", volumePersister);
+  vjs.registerPlugin("persistvolume", volumePersister);
 
 });

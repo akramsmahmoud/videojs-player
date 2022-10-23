@@ -40,10 +40,19 @@ window.addEventListener('load', function() {
 
 function updatePauseBtn() {
     const lastVideoWatched = JSON.parse(localStorage.getItem('lastVideoWatched'))
-    const MAX_LENGTH = 200;
     const videoSeason = lastVideoWatched.currentSeason;
+    const videoSeries = lastVideoWatched.currentSeries;
     localStorage.setItem('pauseBtn', `<span>Season ${videoSeason+1}</span> <span><i id="PlayButtonIcon" class="fas fa-play" aria-hidden="true"></i> keep Watching</span>`)
     localStorage.setItem('endBtn', `<span>Season ${videoSeason+1}</span><span><i id="PlayButtonIcon" class="fas fa-redo-alt" aria-hidden="true"></i> &nbsp; Watch Again</span>`)
+
+    document.querySelectorAll('.playlist__item--active .playlist__series').forEach(($serie) => {
+        const $seriesPreview = $serie.querySelector('.playlist__series-preview');
+        if (+$seriesPreview.dataset.seasonIndex === videoSeason && +$seriesPreview.dataset.seriesIndex === videoSeries){
+            $serie.classList.add('playlist__series--lastWatched')
+        }else{
+            $serie.classList.remove('playlist__series--lastWatched')
+        }
+    })
 }
 
 
