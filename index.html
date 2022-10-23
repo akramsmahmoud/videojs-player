@@ -272,7 +272,7 @@
             font-family: inherit;
             font-size: 0.875rem;
             font-weight: 500;
-            line-height: 1.25;
+            line-height: 23px;
             user-select: none;
             white-space: nowrap;
             text-align: center;
@@ -620,6 +620,9 @@
         align-items: center;
         justify-content: center;
         font-family: arial;
+        }
+        .vjs-button.next-playlist{
+            width: 1em;
         }
         .vjs-paused.vjs-has-started .vjs-big-play-button {
             display: block;
@@ -1152,6 +1155,7 @@
 
 <script src="./plugins/videojs/video.min.js"></script>
 <!-- <script src="./plugins/videojs/videojs-contrib-hls.min.js"></script> -->
+<script src="./plugins/videojs-persistvolume/videojs.persistvolume.js"></script>
 <script src="./plugins/video-flor/videojs-flor.min.js"></script>
 <script src="./plugins/thumbnails-generator/index.js"></script>
 <script src="./plugins/video-thumbnail/videojs.thumbnail.js"></script>
@@ -1238,7 +1242,6 @@
                 </div>
             </div>
             <div class="playlist__series-title">${video_name}</div>
-            <div class="playlist__series-duration">${video_duration}</div>
             <div class="playlist__series-description">${video_description}</div>
         </div>`;
         return series_template;
@@ -1498,7 +1501,7 @@
         player.getChild('controlBar').addChild('loopButton', {}, 9);
         player.getChild('controlBar').addChild('togglePlaylistButton', {}, 9);
         player.getChild('controlBar').addChild('changeSeasonButton', {}, 9);
-        player.getChild('controlBar').addChild('nextSessonButton', {}, 5);
+        player.getChild('controlBar').addChild('nextSessonButton', {}, 1);
         const closeBtn = player.addChild('closeButton');
 
         player.on('userinactive', () => {
@@ -1533,6 +1536,9 @@
             if (loopState) {
                 playNext();
             }
+        });
+        player.ready(function () {
+            this.persistvolume();
         });
     });
 
