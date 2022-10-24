@@ -80,7 +80,7 @@
 
 
         .playlist__wrapper {
-            width: 50%;
+            width: 100%;
             min-width: 735px;
         }
 
@@ -127,6 +127,8 @@
 
         .playlist__dropdown {
             width: 220px;
+            margin-left: auto;
+            margin-right: 10px;
         }
 
         @media (max-width: 1023px) {
@@ -147,7 +149,8 @@
         }
 
         .playlist__item--active {
-            display: block;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .playlist__series {
@@ -158,9 +161,28 @@
             grid-template-rows: 30px 1fr;
             grid-column-gap: 15px;
             padding: 20px 0;
+            width: 50%;
         }
         .playlist__series--lastWatched{
             background: #333;
+            position: relative;
+        }
+
+        .playlist__series--lastWatched:after {
+            content: '';
+            width: 30px;
+            height: 30px;
+            background: var(--main-element-color);
+            mask: var(--play-icon);
+            -webkit-mask: var(--play-icon);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            position: absolute;
+            left: 25px;
         }
 
         @media (max-width: 1023px) {
@@ -171,6 +193,7 @@
                 grid-gap: 5px;
                 border-top: none;
                 margin-bottom: 35px;
+                width: 100%;
             }
         }
 

@@ -28,7 +28,33 @@ const playlist_data_source = [
                 "video_duration": "4:00 min",
                 "video_poster": "./media/S1-3.png",
                 "video_url": "./media/S1-3.mp4",
-                
+            },
+            {
+                "video_id": 3,
+                "video_name": "title Season 1 series 1",
+                "video_description": "Lorem Ipsum data text long one",
+                "video_duration": "2:00 min",
+                "video_poster": "./media/S1-3.png",
+                "video_url": "./media/S2-2.mp4",
+
+            },
+            {
+                "video_id": 4,
+                "video_name": "title Season 1 series 1",
+                "video_description": "Lorem Ipsum data text long one",
+                "video_duration": "2:00 min",
+                "video_poster": "./media/S1-3.png",
+                "video_url": "./media/S2-2.mp4",
+
+            },
+            {
+                "video_id": 5,
+                "video_name": "title Season 1 series 1",
+                "video_description": "Lorem Ipsum data text long one",
+                "video_duration": "2:00 min",
+                "video_poster": "./media/S1-3.png",
+                "video_url": "./media/S2-2.mp4",
+
             }
         ]
     },
