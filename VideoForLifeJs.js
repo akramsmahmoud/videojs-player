@@ -12,8 +12,9 @@ if (!localStorage.getItem('pauseBtn')){
     localStorage.setItem('initialBtn', `<span>&nbsp</span><span><i id="PlayButtonIcon" class="fas fa-play"></i> &nbsp;Play Video</span>`)
     localStorage.setItem('pauseBtn', `<span>&nbsp</span><span><i id="PlayButtonIcon" class="fas fa-play" aria-hidden="true"></i> keep Watching</span>`)
 }
-//var canvas = document.getElementById('canvasId');
-//var context = canvas.getContext('2d');
+
+var canvas = document.getElementById('canvasId');
+var context = canvas.getContext('2d');
 
 window.addEventListener('load', function() {
     const lastPercentage = localStorage.getItem('lastPercentage');
@@ -25,15 +26,16 @@ window.addEventListener('load', function() {
     } else {
         PlayButton.innerHTML = localStorage.getItem('endBtn')        
     }
+
     // for canvas draw
-    /* if (localStorage.getItem("image")) {
+    if (localStorage.getItem("image")) {
         let img = new Image();
         img.src = localStorage.getItem("image");
 
-        img.onload = function() {
+        img.onload = function () {
             context.drawImage(img, 0, 0);
         };
-    } */
+    }
 
 })
 
@@ -132,6 +134,9 @@ function updateProgressBar($currentVideo, currentSeason, currentSeries) {
     localStorage.setItem("VideosWatchedPercentage", JSON.stringify(last_registered_percentage));
     localStorage.setItem("lastVideoWatched", JSON.stringify({ currentSeason, currentSeries, video_title}));
     localStorage.setItem("lastPercentage", percentage);
+
+    canvas.style.display = 'block';
+    draw($currentVideo, canvas);
 }
 
 
@@ -280,3 +285,11 @@ document.getElementById('PlayButton').addEventListener('click', () =>{
     }
     playVideo(currentSeason, currentSeries)
 })
+
+
+
+//canvas
+function draw(video, canvas) {
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    localStorage.setItem("image", canvas.toDataURL("image/jpg"));
+}

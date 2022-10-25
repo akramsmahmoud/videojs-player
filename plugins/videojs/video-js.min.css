@@ -542,7 +542,7 @@ body.vjs-full-window {
     transition: all 0s
 }
 
-.vjs-controls-disabled .vjs-big-play-button, .vjs-error .vjs-big-play-button, .vjs-has-started .vjs-big-play-button, .vjs-using-native-controls .vjs-big-play-button {
+.vjs-controls-disabled .vjs-big-play-button, .vjs-error .vjs-big-play-button, .vjs-using-native-controls .vjs-big-play-button {
     display: none
 }
 

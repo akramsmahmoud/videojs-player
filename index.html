@@ -160,14 +160,19 @@
             align-items: center;
             grid-template-rows: 30px 1fr;
             grid-column-gap: 15px;
-            padding: 20px 0;
+            padding: 20px 5px;
             width: 50%;
+        }
+        .playlist__series:nth-child(odd){
+            border-right: 20px solid #242526;
         }
         .playlist__series--lastWatched{
             background: #333;
             position: relative;
         }
-
+        .playlist__series--lastWatched .playlist__series-number{
+            display: none;
+        }
         .playlist__series--lastWatched:after {
             content: '';
             width: 30px;
@@ -182,7 +187,7 @@
             -webkit-mask-position: center;
             -webkit-mask-repeat: no-repeat;
             position: absolute;
-            left: 25px;
+            left: 30px;
         }
 
         @media (max-width: 1023px) {
@@ -226,6 +231,7 @@
             grid-area: preview;
             width: 100%;
             cursor: pointer;
+            margin-bottom: auto;
         }
 
         .playlist__series-preview-item {
@@ -651,8 +657,27 @@
         .vjs-button.next-playlist{
             width: 1em;
         }
+        .video-js .vjs-big-play-button {
+            opacity: 0;
+            transition: 1s ease-in-out all;
+            background: none;
+            color: #fff;
+        }
+        @keyframes playButton{
+            0%{
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50%{
+                transform: translateY(1);
+                opacity: 1;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
         .vjs-paused.vjs-has-started .vjs-big-play-button {
-            display: block;
+            animation: playButton 1s ease-in-out 1;
         }
         .vjs-setting-menu .vjs-menu-content{
             min-width: 200px;
@@ -998,10 +1023,6 @@
 
     <!-- Video controls buttons -->
     <style>
-        .loop-button {
-
-        }
-
         .loop-button .vjs-icon-placeholder {
             width: 34px;
             height: 14px;
@@ -1150,6 +1171,9 @@
             </button>
         </div>
         <div>
+            <div class="item ">
+                <canvas style="width: 15rem; margin-bottom: 1rem;" id="canvasId"></canvas>
+            </div>
             <progress id="bottom-progress-bar" min="0" max="100" value="33">33% played</progress>
         </div>
 
@@ -2115,30 +2139,6 @@
                     }
                 });
 
-                
-
-                // setTimeout(() =>{
-                //          fetch(vid.currentSrc())
-                //              .then(response => response.blob())
-                //              .then(async (blob) => {
-                //                  const file = new File([blob], `test`, {
-                //                      type: blob.type
-                //                  })
-
-                //                  const allThumb = {};
-                //                  const thumbnailsNumToGenerate = Math.round(vid.duration() / 10);
-
-                //                  await generateVideoThumbnails(file, thumbnailsNumToGenerate).then((thumbArray) => {
-                //                      let seconds = 0;
-                //                      thumbArray.map((item) => {
-                //                          allThumb[seconds] = {src: item}
-                //                          seconds += 10;
-                //                      })
-                //                      console.log(allThumb);
-                //                      vid.thumbnails(allThumb);
-                //                  })
-                //              })
-                //  },0)
             } else {
                 $videoItem.classList.remove(videoItemActiveClass);
             }
