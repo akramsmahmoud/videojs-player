@@ -2094,18 +2094,21 @@
                 if(vid.duration() === Infinity){
                     return;
                 }
-                vid.on('loadedmetadata', async () => {
+                const generateThumbnails = async () => {
                     console.log(vid.duration()) // log is NaN 
+                    if(vid.duration() === NaN){ generateThumbnails() }
                     //CHECK if HLS
                     if (vid.currentType() === 'application/x-mpegURL') {
                         let allThumb = [];
                         for (let i = 0; i < 3; i++) {
                             let seconds = 0;
-                            const thumbnailsNumToGenerate = Math.round(vid.duration() / 5);
+                            let thumbnailsNumToGenerate = Math.round(vid.duration() / 10)
+                            let frame = thumbnailsNumToGenerate > 10 ? 10 : 5;
+                            thumbnailsNumToGenerate = Math.round(vid.duration() / frame)
                             let items = [];
                             for (let i = 0; i < thumbnailsNumToGenerate; i++) {
                                 items.push(getHlsVideoCover(vid.currentSrc(), seconds));
-                                seconds += 5;
+                                seconds += frame;
                             }
                             const results = await Promise.all(items).then(res => {
                                 allThumb = Object.assign({}, ...res.map((x) => (x)));
@@ -2122,11 +2125,13 @@
                         let allThumb = [];
                         for (let i = 0; i < 3; i++) {
                             let seconds = 0;
-                            const thumbnailsNumToGenerate = Math.round(vid.duration() / 5);
+                            let thumbnailsNumToGenerate = Math.round(vid.duration() / 10)
+                            let frame = thumbnailsNumToGenerate > 10 ? 10 : 5;
+                            thumbnailsNumToGenerate = Math.round(vid.duration() / frame)
                             let items = [];
                             for (let i = 0; i < thumbnailsNumToGenerate; i++) {
                                 items.push(getVideoCover(vid.currentSrc(), seconds));
-                                seconds += 5;
+                                seconds += frame;
                             }
                             const results = await Promise.all(items).then(res => {
                                 allThumb = Object.assign({}, ...res.map((x) => (x)));
@@ -2138,8 +2143,8 @@
                             }
                         }
                     }
-                });
-
+                }
+                generateThumbnails()
             } else {
                 $videoItem.classList.remove(videoItemActiveClass);
             }
