@@ -29,6 +29,7 @@ window.addEventListener('load', function() {
 
     // for canvas draw
     if (localStorage.getItem("image")) {
+        canvas.style.display = 'inline-block';
         let img = new Image();
         img.src = localStorage.getItem("image");
 
@@ -135,7 +136,7 @@ function updateProgressBar($currentVideo, currentSeason, currentSeries) {
     localStorage.setItem("lastVideoWatched", JSON.stringify({ currentSeason, currentSeries, video_title}));
     localStorage.setItem("lastPercentage", percentage);
 
-    canvas.style.display = 'block';
+    canvas.style.display = 'inline-block';
     draw($currentVideo, canvas);
 }
 
@@ -230,11 +231,6 @@ function toggleFullScreen() {
 
     }
 }
-
-/* function draw(video, canvas) {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
-    localStorage.setItem("image", canvas.toDataURL("image/jpg"));
-} */
 
 
 updateVideo1TimeWithBar();

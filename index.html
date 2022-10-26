@@ -346,6 +346,7 @@
         #bottom-progress-bar{
             border-radius: 0;
             height: 5px;
+            display: none;
         }
         progress::-webkit-progress-bar {
         /* style rules */
@@ -1171,8 +1172,8 @@
             </button>
         </div>
         <div>
-            <div class="item ">
-                <canvas style="width: 15rem; margin-bottom: 1rem;" id="canvasId"></canvas>
+            <div class="item" style="text-align:right;">
+                <canvas style="width: 20rem; margin-bottom: 1rem;display: none;" id="canvasId"></canvas>
             </div>
             <progress id="bottom-progress-bar" min="0" max="100" value="33">33% played</progress>
         </div>
