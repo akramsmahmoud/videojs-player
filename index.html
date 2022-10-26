@@ -258,7 +258,7 @@
             z-index: 2;
         }
 
-        .playlist__series-preview-item-time {
+        .thumbnail__time {
             position: absolute;
             top: 2px;
             right: 2px;
@@ -1291,7 +1291,7 @@
 
                     <img class="playlist__series-preview-item-img thumbnail__img"
                             src="${video_poster}">
-                            <span class="playlist__series-preview-item-time thumbnail__time">1:11</span>
+                            <span class="playlist__series-preview-item-time thumbnail__time">--:--</span>
                     <progress id='top-progress-bar' class='top-progress-bar' min='0' max='100' value='0'>0%
                                     played</progress>
                 </div>
@@ -1320,13 +1320,13 @@
                                 playsinline>
                             <source src="${video_url}">
                         </video>
+                        <span class="modal-player__series-time thumbnail__time">--:--</span>
                         <progress id='top-progress-bar' class='top-progress-bar' min='0' max='100' value='0'>0% played</progress>
                         <img class="modal-player__series-item-img thumbnail__img"
                                 src="${video_poster}">
                     </div>
                 </div>
                 <div class="modal-player__series-title">${video_name}</div>
-                <div class="modal-player__series-duration">${video_duration}</div>
                 <div class="modal-player__series-description">${video_description}</div>
             </div>`;
         return series_template;
@@ -1946,9 +1946,7 @@
             return m + ":" + s;
         }
         $video.onloadedmetadata = function () {
-            if($video.classList.contains('playlist__series-preview-item-video')){
-                const $time = $thumbnail.querySelector('.thumbnail__time').innerText = format($video.duration);
-            }
+            const $time = $thumbnail.querySelector('.thumbnail__time').innerText = format($video.duration);
         };
 
         $thumbnail.addEventListener('mouseenter', () => {
