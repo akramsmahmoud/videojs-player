@@ -660,22 +660,36 @@
         }
         .video-js .vjs-big-play-button {
             opacity: 0;
-            transition: 1s ease-in-out all;
-            background: none;
+            background-color: transparent !important;
             color: #fff;
         }
         @keyframes playButton{
             0%{
-                transform: scale(0.5);
                 opacity: 0;
             }
             50%{
-                transform: translateY(1);
-                opacity: 1;
+                opacity: 0.8;
             }
             100%{
                 opacity: 0;
             }
+        }
+        @keyframes pauseButton{
+            0%{
+                opacity: 0;
+            }
+            50%{
+                opacity: 0.8;
+            }
+            100%{
+                opacity: 0;
+            }
+        }
+        .vjs-playing.vjs-has-started .vjs-big-play-button .vjs-icon-placeholder:before{
+            content: "\f103";
+        }
+        .vjs-playing.vjs-has-started .vjs-big-play-button {
+            animation: pauseButton 1s ease-in-out 1;
         }
         .vjs-paused.vjs-has-started .vjs-big-play-button {
             animation: playButton 1s ease-in-out 1;
@@ -1559,8 +1573,8 @@
         player.getChild('controlBar').addChild('nextSessonButton', {}, 1);
         const closeBtn = player.addChild('closeButton');
 
-        player.on('userinactive', () => {
-            document.querySelector('.modal-player__season-select').classList.remove('active');
+        player.on('play', () => {
+            player.on('userinactive', () => document.querySelector('.modal-player__season-select').classList.remove('active'))
         })
 
         closeBtn.el().addEventListener('click', () => {
