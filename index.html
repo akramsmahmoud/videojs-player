@@ -415,7 +415,7 @@
         .modal-player__back {
             position: fixed;
             left: 20px;
-            top: 20px;
+            top: 40px;
             width: 24px;
             height: 24px;
             background: var(--main-element-color);
@@ -655,6 +655,15 @@
         justify-content: center;
         font-family: arial;
         }
+        .vjs-title{
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: inline-block;
+            width: auto;
+            padding: 0 62px;
+        }
         .vjs-button.next-playlist{
             width: 1em;
         }
@@ -705,7 +714,7 @@
         .vjs-button.close {
             position: absolute !important;
             top: 15px;
-            left: 15px;
+            right: 15px;
             z-index: 10000000000;
             width: 25px !important;
             height: 25px !important;
@@ -729,7 +738,7 @@
         }
         @media (max-width: 1023px) {
             .vjs-button.close {
-                left: 90%;
+                /*left: 90%;*/
             }
         }
         .video-js.vjs-user-active .vjs-button.close{
@@ -737,6 +746,41 @@
         }
         .video-js .vjs-play-progress .vjs-time-tooltip{
             display: none !important;
+        }
+        .video-js .vjs-seek-button{
+            min-height: 60px;
+        }
+        .video-js.vjs-v7 .vjs-seek-button .vjs-icon-placeholder::before{
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color:rgba(255, 255, 255, .5);
+            transition: all 0.1s ease-in-out;
+        }
+        .video-js.vjs-v7 .vjs-seek-button .vjs-icon-placeholder:hover::before{
+            background-color:rgba(255, 255, 255, 1);
+        }
+        .video-js.vjs-v7 .vjs-seek-button.skip-back .vjs-icon-placeholder::before{
+            content: "";
+            mask: url(plugins/video-seek/replay10.svg);
+            -webkit-mask: url(plugins/video-seek/replay10.svg);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+        }
+        .video-js.vjs-v7 .vjs-seek-button.skip-forward .vjs-icon-placeholder::before{
+            content: "";
+            mask: url(plugins/video-seek/forward30.svg);
+            -webkit-mask: url(plugins/video-seek/forward30.svg);
+            mask-size: contain;
+            mask-position: center;
+            mask-repeat: no-repeat;
+            -webkit-mask-size: contain;
+            -webkit-mask-position: center;
+            -webkit-mask-repeat: no-repeat;
         }
 
         a{
@@ -1251,13 +1295,13 @@
     document.querySelector('.modal-player__items').innerHTML = html_modal_player_items;
 
     function render_players_items_template(player_data) {
-        const { season_id, series_id, series_url } = player_data;
+        const { season_id, series_id, series_url, series_title } = player_data;
         let type = '';
         const str = new String(series_url);
         if (!str.endsWith(".mp4")) {
             type = 'type="application/x-mpegURL"';
         }
-        const playlist_items_template = `<div class="modal-player__item" data-season-index="${season_id}" data-series-index="${series_id}">
+        const playlist_items_template = `<div class="modal-player__item" data-season-index="${season_id}" data-series-index="${series_id}" data-series-title="${series_title}">
                 <video class="video-js vjs-default-skin vjs-big-play-centered modal-player__item-video" controls>
                     <source src="${series_url}" ${type}>
                 </video>
@@ -1557,7 +1601,9 @@
     videojs.registerComponent('closeButton', closeButton);
     videojs.registerComponent('changeSeasonButton', changeSeasonButton);
     players.forEach(($player, index) => {
+        const video_title = $player.parentElement.dataset.seriesTitle;
         const player = videojs($player, {
+            title: video_title !== "undefined" ? video_title : "",
             controlBar: {
                 pictureInPictureToggle: false
             }
@@ -1578,7 +1624,16 @@
         const closeBtn = player.addChild('closeButton');
 
         player.on('play', () => {
-            player.on('userinactive', () => document.querySelector('.modal-player__season-select').classList.remove('active'))
+            player.on('userinactive', () => {
+                const selectClasses = document.querySelector('.modal-player__season-select').classList;
+                if(!selectClasses.contains('mouseOn')){
+                    selectClasses.remove('active')
+                }
+                
+            })
+        })
+        player.on('pause', () => {
+            player.off('userinactive')
         })
 
         closeBtn.el().addEventListener('click', () => {
@@ -1750,6 +1805,14 @@
             document.addEventListener('click', this.clickHandler);
             window.addEventListener('scroll', this.checkPosition);
             this.$select.addEventListener('change', this.changeHandler);
+            if(document.querySelectorAll('.custom-select__list')[1]){
+                document.querySelectorAll('.custom-select__list')[1].addEventListener('mouseover', () => {
+                    document.querySelector('.modal-player__season-select').classList.add('mouseOn')
+                });
+                 document.querySelectorAll('.custom-select__list')[1].addEventListener('mouseout', () => {
+                    document.querySelector('.modal-player__season-select').classList.remove('mouseOn')
+                });
+            }
             this.$name = this.$customSelect.querySelector('.' + this.customSelectClass + '__input-name');
             this.$items = this.$customSelect.querySelectorAll('.' + this.customSelectClass + '__item');
         }
@@ -1790,6 +1853,7 @@
                         this.current = event.target.dataset.selectIndex;
                         this.select(this.current);
                         this.close();
+                        document.querySelector('.modal-player__season-select').classList.remove('active');
                     }
                 }
             } else {
