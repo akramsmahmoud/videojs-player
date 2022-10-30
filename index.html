@@ -845,6 +845,11 @@
             border-color: #ccc;
             outline: none;
         }
+        .modal-player__season-select{
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+        }
         .modal-player__season-select .custom-select,.modal-player__season-select .custom-select:focus{
             border-color: transparent;
         }
@@ -1008,26 +1013,26 @@
             background: var(--main-background-color);
         }
 
-        .modal-player__season-select{
+        .vjs-player__season-select{
             position: absolute;
-            right: 433px;
+            right: 5px;
             bottom: 0;
             width: 300px;
             visibility: hidden;
             opacity: 0;
             transition: bottom 0.2s ease-in-out,opacity 0.1s ease-in-out;
         }
-        .modal-player__season-select.active{
+        .vjs-player__season-select.active{
             opacity: 1;
             bottom: 60px;
             visibility: visible;
             z-index: 9999999999;
         }
-        .modal-player__season-select.toRight{
+        .vjs-player__season-select.toRight{
             right: 3px;
         }
         @media (max-width: 1023px) {
-            .modal-player__season-select{
+            .vjs-player__season-select{
                 right: 3px;
             }
         }
@@ -1503,6 +1508,22 @@
         },
     });
 
+    var selectSeasonFullscreen = videojs.extend(Component, {
+        constructor: function (player, options) {
+
+            // Equivalent of `super(this, arguments)`
+            Component.apply(this, arguments);
+            this.el().innerHTML +=  document.querySelector('.modal-player__season-select').innerHTML;
+
+        },
+
+        createEl: function () {
+            return videojs.dom.createEl('div', {
+                className: 'vjs-player__season-select'
+            });
+        },
+    });
+
     const Button = videojs.getComponent('Button');
 
     let currentSeason = 0;
@@ -1534,18 +1555,20 @@
             this.addClass(togglePlaylistButtonClass);
         },
         handleClick: function () {
+            this.player().el().querySelector('.vjs-playlist').innerHTML = "<div class='modal-player__playlist'>" + document.querySelector('.modal-player > .modal-player__playlist').innerHTML + "</div>";
             const $togglePlaylistButton = this.player().el().querySelector(`.${togglePlaylistButtonClass}`);
             const $fullscreenPlaylist = this.player().el().querySelector('.vjs-playlist');
 
             if ($modal.classList.contains(openPlaylistClass)) {
                 $togglePlaylistButton.classList.remove(togglePlaylistButtonActiveClass);
                 $modal.classList.remove(openPlaylistClass);
-                document.querySelector('.modal-player__season-select').classList.add('toRight')
+                document.querySelector('.vjs-player__season-select').classList.add('toRight')
             } else {
                 $togglePlaylistButton.classList.add(togglePlaylistButtonActiveClass);
                 $modal.classList.add(openPlaylistClass);
-                document.querySelector('.modal-player__season-select').classList.remove('toRight')
+                document.querySelector('.vjs-player__season-select').classList.remove('toRight')
             }
+
 
             if($fullscreenPlaylist.classList.contains('open')){
                 $fullscreenPlaylist.classList.remove('open')
@@ -1584,7 +1607,7 @@
             this.addClass('change-season');
         },
         handleClick: function () {
-            const classes = document.querySelector('.modal-player__season-select').classList;
+            const classes = this.player().el().querySelector('.vjs-player__season-select').classList;
             if (classes.contains('active')) {
                 classes.remove('active');
             } else {
@@ -1595,6 +1618,7 @@
 
         
     videojs.registerComponent('PlayListFullscreen', PlayListFullscreen);
+    videojs.registerComponent('selectSeasonFullscreen', selectSeasonFullscreen);
     videojs.registerComponent('loopButton', loopButton);
     videojs.registerComponent('togglePlaylistButton', togglePlaylistButton);
     videojs.registerComponent('nextSessonButton', nextSessonButton);
@@ -1617,6 +1641,7 @@
             back: 10
         })
         player.addChild('PlayListFullscreen');
+        player.addChild('selectSeasonFullscreen');
         player.getChild('controlBar').addChild('loopButton', {}, 9);
         player.getChild('controlBar').addChild('togglePlaylistButton', {}, 9);
         player.getChild('controlBar').addChild('changeSeasonButton', {}, 9);
@@ -1625,7 +1650,7 @@
 
         player.on('play', () => {
             player.on('userinactive', () => {
-                const selectClasses = document.querySelector('.modal-player__season-select').classList;
+                const selectClasses = player.el().querySelector('.vjs-player__season-select').classList;
                 if(!selectClasses.contains('mouseOn')){
                     selectClasses.remove('active')
                 }
@@ -1658,6 +1683,22 @@
             } else {
                 $togglePlaylistButton.classList.remove(togglePlaylistButtonActiveClass);
             }
+
+            const $seasonSelect = player.el().querySelector('.vjs-player__season-select select');
+            const select = new Select({
+                $select: $seasonSelect,
+            });
+
+            $seasonSelect.addEventListener('change', () => {
+                if (+$seasonSelect.value !== currentSeason) {
+                    changeSeason(+$seasonSelect.value);
+                }
+            });
+
+            player.el().querySelector('.vjs-player__season-select').addEventListener('mouseover', () => {
+                select.checkPosition();
+            });
+
         });
 
         player.on('ended', () => {
@@ -1807,10 +1848,10 @@
             this.$select.addEventListener('change', this.changeHandler);
             if(document.querySelectorAll('.custom-select__list')[1]){
                 document.querySelectorAll('.custom-select__list')[1].addEventListener('mouseover', () => {
-                    document.querySelector('.modal-player__season-select').classList.add('mouseOn')
+                    document.querySelector('.vjs-player__season-select').classList.add('mouseOn')
                 });
                  document.querySelectorAll('.custom-select__list')[1].addEventListener('mouseout', () => {
-                    document.querySelector('.modal-player__season-select').classList.remove('mouseOn')
+                    document.querySelector('.vjs-player__season-select').classList.remove('mouseOn')
                 });
             }
             this.$name = this.$customSelect.querySelector('.' + this.customSelectClass + '__input-name');
@@ -1853,7 +1894,7 @@
                         this.current = event.target.dataset.selectIndex;
                         this.select(this.current);
                         this.close();
-                        document.querySelector('.modal-player__season-select').classList.remove('active');
+                        document.querySelector('.vjs-player__season-select').classList.remove('active');
                     }
                 }
             } else {
