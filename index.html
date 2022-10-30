@@ -1405,7 +1405,7 @@
 <script>
     function setQualityLevels(player) {
         //quality videojs     
-        let cog = document.querySelector('button.vjs-setting-button')
+        let cog = player.el().querySelector('button.vjs-setting-button')
         var qualityLevels = player.qualityLevels();
         let badge = document.createElement('span')
 
