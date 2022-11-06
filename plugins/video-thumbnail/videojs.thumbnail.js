@@ -200,13 +200,20 @@
       if (left > (clientRect.width - (img.width / 2))){
         left = clientRect.width - (img.width/2)
       }
+
+      
       
       player.getChild('controlBar')
         .getChild('progressControl')
         .getChild('seekBar')
         .getChild('mouseTimeDisplay').update = function(){
-          this.el().style.left = left + 'px';
+          //this.el().style.left = left + 'px';
         };
+
+      
+      if (Object.keys(settings).length > 100){
+        left = left + 760
+      }
       div.style.left = left + 'px';
       
       

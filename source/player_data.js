@@ -18,6 +18,18 @@ const player_data_source = [
         series_title: "Title season 1 series 3"
     },
     {
+        season_id: 0,
+        series_id: 3,
+        series_url: './source/ffmpeg_lab/master.m3u8',
+        series_title: "Title season m3u8 series m3u8"
+    },
+    {
+        season_id: 0,
+        series_id: 4,
+        series_url: 'https://bitmovin-a.akamaihd.net/content/sintel/hls/playlist.m3u8',
+        series_title: "Title season bitmovin m3u8 series bitmovin m3u8"
+    },
+    {
         season_id: 1,
         series_id: 0,
         series_url: 'https://devstreaming-cdn.apple.com/videos/streaming/examples/img_bipbop_adv_example_fmp4/master.m3u8',

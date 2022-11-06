@@ -823,9 +823,6 @@ background: linear-gradient(0deg, rgba(0,0,255,1) 0%, rgba(0,255,255,1) 100%);
 
     <!-- Custom select -->
     <style>
-        body{ 
-            transform: scale(1.25)
-        }
 
         .custom-select {
             width: 100%;
@@ -2241,6 +2238,23 @@ background: linear-gradient(0deg, rgba(0,0,255,1) 0%, rgba(0,255,255,1) 100%);
                     console.log(vid.duration()) // log is NaN 
                     if(vid.duration() === NaN){ generateThumbnails() }
                     //CHECK if HLS
+                    if (+$videoItem.dataset.seasonIndex === 0 && +$videoItem.dataset.seriesIndex === 3) {
+                        function lpad(value, padding) {
+                            if(value.toString().length >= padding) return value;
+                            if(value === 0) value = 1;
+                            var zeroes = new Array(padding + 1).join("0");
+                            return (zeroes + value).slice(-padding);
+                        }
+                        let thumbnailsNumToGenerate = Math.round(vid.duration() / thumbnailFrame)
+                        let items = [];
+                        for (let i = 0; i < vid.duration(); i++) {
+                            items.push({[i]: {src: `source/ffmpeg_lab/thumb/img-${lpad(i,3)}.jpeg`}});
+                        }
+                        items = Object.assign({}, ...items.map((x) => (x)))
+                        console.log(items)
+                        vid.thumbnails({...items});
+                        return;
+                    }
                     if (vid.currentType() === 'application/x-mpegURL') {
                         let allThumb = [];
                         for (let i = 0; i < 3; i++) {
